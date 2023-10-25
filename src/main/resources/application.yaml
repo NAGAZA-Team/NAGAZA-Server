@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  flyway:
+    enabled: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+app:
+  token:
+    secret: ${AUTH_SECRET}
+    expiration:
+      access: 86400
+      refresh: 384000
