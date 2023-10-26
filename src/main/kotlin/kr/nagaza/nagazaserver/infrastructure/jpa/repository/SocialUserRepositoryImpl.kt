@@ -26,4 +26,17 @@ class SocialUserRepositoryImpl(
             SocialUserEntity.fromModel(socialUser)
         ).toModel()
     }
+
+    override fun findAllByUserId(userId: String): List<SocialUser> {
+        return jpaSocialUserRepository.findAllByUserId(userId).map { it.toModel() }
+    }
+
+    override fun deleteUser(socialUser: SocialUser) {
+        jpaSocialUserRepository.deleteById(
+            SocialUserEntityKey(
+                socialProvider = socialUser.provider,
+                socialIdentifier = socialUser.identifier,
+            )
+        )
+    }
 }

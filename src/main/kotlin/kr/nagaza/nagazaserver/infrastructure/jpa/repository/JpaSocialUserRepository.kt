@@ -4,4 +4,6 @@ import kr.nagaza.nagazaserver.infrastructure.jpa.entity.SocialUserEntity
 import kr.nagaza.nagazaserver.infrastructure.jpa.entity.SocialUserEntityKey
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface JpaSocialUserRepository : JpaRepository<SocialUserEntity, SocialUserEntityKey>
+interface JpaSocialUserRepository : JpaRepository<SocialUserEntity, SocialUserEntityKey> {
+    fun findAllByUserId(userId: String): List<SocialUserEntity>
+}

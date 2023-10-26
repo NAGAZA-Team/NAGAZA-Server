@@ -6,4 +6,6 @@ import kr.nagaza.nagazaserver.domain.model.SocialUser
 interface SocialUserRepository {
     fun getSocialUser(provider: SocialProvider, identifier: String): SocialUser?
     fun saveSocialUser(socialUser: SocialUser): SocialUser
+    fun findAllByUserId(userId: String): List<SocialUser>
+    fun deleteUser(socialUser: SocialUser)
 }

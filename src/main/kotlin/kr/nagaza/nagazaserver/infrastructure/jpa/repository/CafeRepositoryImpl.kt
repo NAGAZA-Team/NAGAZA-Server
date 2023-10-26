@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository
 class CafeRepositoryImpl(
     private val jpaCafeRepository: JpaCafeRepository,
 ) : CafeRepository {
+    override fun findAll(): List<Cafe> {
+        return jpaCafeRepository.findAll().map { it.toModel() }
+    }
+
     override fun findById(id: String): Cafe? {
         return jpaCafeRepository.findByIdOrNull(id)?.toModel()
     }

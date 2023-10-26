@@ -15,4 +15,6 @@ enum class ErrorCode(
     USER_NOT_FOUND("UE0001", "사용자를 찾을 수 없습니다."),
 
     CAFE_NOT_FOUND("CE0001", "카페를 찾을 수 없습니다."),
+
+    CAFE_ROOM_NOT_FOUND("RE0001", "카페 방을 찾을 수 없습니다."),
 }
