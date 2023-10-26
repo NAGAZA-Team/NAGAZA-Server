@@ -11,6 +11,11 @@ class UserService(
     private val userRepository: UserRepository,
 ) {
     @Transactional
+    fun getMeInfo(userId: String): User {
+        return userRepository.findById(userId) ?: throw DomainException()
+    }
+
+    @Transactional
     fun updateNickName(userId: String, nickname: String): User {
         val user = userRepository.findById(userId) ?: throw DomainException()
         val newUser = user.copy(

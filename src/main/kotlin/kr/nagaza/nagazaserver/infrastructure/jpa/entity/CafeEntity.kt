@@ -3,6 +3,7 @@ package kr.nagaza.nagazaserver.infrastructure.jpa.entity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
+import kr.nagaza.nagazaserver.domain.model.Cafe
 
 @Entity(name = "cafe")
 class CafeEntity(
@@ -33,4 +34,30 @@ class CafeEntity(
 
     @Column(name = "location_lng")
     val locationLng: Double?,
-)
+) {
+    fun toModel() = Cafe(
+        id = cafeId,
+        franchiseId = franchiseId,
+        name = cafeName,
+        description = description,
+        address = address,
+        webUrl = webUrl,
+        phoneNumber = phoneNumber,
+        locationLat = locationLat,
+        locationLng = locationLng,
+    )
+
+    companion object {
+        fun fromModel(cafe: Cafe) = CafeEntity(
+            cafeId = cafe.id,
+            franchiseId = cafe.franchiseId,
+            cafeName = cafe.name,
+            description = cafe.description,
+            address = cafe.address,
+            webUrl = cafe.webUrl,
+            phoneNumber = cafe.phoneNumber,
+            locationLat = cafe.locationLat,
+            locationLng = cafe.locationLng,
+        )
+    }
+}

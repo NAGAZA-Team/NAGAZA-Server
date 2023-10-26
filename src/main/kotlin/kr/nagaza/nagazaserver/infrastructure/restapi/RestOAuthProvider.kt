@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component
 @Component
 class RestOAuthProvider(
     @Qualifier("appleOAuthProvider") private val appleOAuthProvider: OAuthProvider,
+    @Qualifier("kakaoOAuthProvider") private val kakaoOAuthProvider: OAuthProvider,
 ): OAuthProvider {
     override fun authenticate(provider: SocialProvider, accessToken: String): SocialUser {
         val socialProvider = mapProvider(provider)
@@ -22,6 +23,7 @@ class RestOAuthProvider(
 
     private fun mapProvider(provider: SocialProvider) = when(provider) {
         SocialProvider.APPLE -> appleOAuthProvider
-        else -> appleOAuthProvider
+        SocialProvider.KAKAO -> kakaoOAuthProvider
+        else -> throw IllegalArgumentException()
     }
 }
