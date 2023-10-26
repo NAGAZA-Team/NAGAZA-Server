@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.nimbusds.jose.jwk.JWK
 import io.jsonwebtoken.Jwts
 import kr.nagaza.nagazaserver.domain.exception.DomainException
+import kr.nagaza.nagazaserver.domain.exception.OAuthLoginFailedException
 import kr.nagaza.nagazaserver.domain.model.SocialProvider
 import kr.nagaza.nagazaserver.domain.model.SocialUser
 import kr.nagaza.nagazaserver.domain.repository.OAuthProvider
@@ -41,7 +42,7 @@ class AppleOAuthProvider(
                     provider = SocialProvider.APPLE,
                     userId = ""
                 )
-            }.block() ?: throw DomainException()
+            }.block() ?: throw OAuthLoginFailedException()
     }
 
     data class Key(val kty: String, val kid: String, val use: String, val alg: String, val n: String, val e: String)

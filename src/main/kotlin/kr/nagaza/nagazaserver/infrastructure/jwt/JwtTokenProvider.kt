@@ -42,9 +42,13 @@ class JwtTokenProvider(
         }
     }
 
-    override fun getUserIdFromToken(token: String): String {
-        return Jwts.parserBuilder().setSigningKey(signKey).build()
-            .parseClaimsJws(token).body["id"] as String
+    override fun getUserIdFromToken(token: String): String? {
+        return try{
+            Jwts.parserBuilder().setSigningKey(signKey).build()
+                .parseClaimsJws(token).body["id"] as String
+        } catch(e: Exception) {
+            null
+        }
     }
 
     private fun generateAccessTokenExpiration() = Date(System.currentTimeMillis() + this.accessTokenExpiration * 1000)

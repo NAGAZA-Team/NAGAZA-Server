@@ -1,6 +1,7 @@
 package kr.nagaza.nagazaserver.infrastructure.restapi
 
 import kr.nagaza.nagazaserver.domain.exception.DomainException
+import kr.nagaza.nagazaserver.domain.exception.OAuthLoginFailedException
 import kr.nagaza.nagazaserver.domain.model.SocialProvider
 import kr.nagaza.nagazaserver.domain.model.SocialUser
 import kr.nagaza.nagazaserver.domain.repository.OAuthProvider
@@ -27,7 +28,7 @@ class KakaoOAuthProvider(
                     provider = SocialProvider.KAKAO,
                     userId = ""
                 )
-            }.block() ?: throw DomainException()
+            }.block() ?: throw OAuthLoginFailedException()
     }
 
     data class KakaoUserResponse(val id: Long, val connected_at: String, val kakao_account: KakaoEmailAccount?)

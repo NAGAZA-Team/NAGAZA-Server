@@ -1,6 +1,7 @@
 package kr.nagaza.nagazaserver.domain.service
 
 import jakarta.transaction.Transactional
+import kr.nagaza.nagazaserver.domain.exception.AuthTokenNotValidException
 import kr.nagaza.nagazaserver.domain.exception.DomainException
 import kr.nagaza.nagazaserver.domain.model.*
 import kr.nagaza.nagazaserver.domain.repository.*
@@ -47,10 +48,7 @@ class SocialLoginService(
     fun refreshToken(
         refreshToken: String,
     ): SocialLoginResult {
-        if(!tokenProvider.isTokenValid(refreshToken)) {
-            throw DomainException()
-        }
-        val userId = tokenProvider.getUserIdFromToken(refreshToken)
+        val userId = tokenProvider.getUserIdFromToken(refreshToken) ?: throw AuthTokenNotValidException()
         val token = tokenProvider.generateToken(userId)
         return SocialLoginResult(
             token = token,

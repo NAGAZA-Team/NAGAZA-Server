@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import kr.nagaza.nagazaserver.domain.exception.DomainException
+import kr.nagaza.nagazaserver.domain.exception.NotValidInputException
 import kr.nagaza.nagazaserver.domain.model.SocialProvider
 import kr.nagaza.nagazaserver.domain.service.SocialLoginService
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.RefreshTokenRequest
@@ -25,7 +26,8 @@ class AuthController(
     fun requestSocialLogin(
         @RequestBody @Valid request: SocialLoginRequest,
     ): SocialLoginResponse {
-        val provider = SocialProvider.fromString(request.provider) ?: throw DomainException()
+        val provider = SocialProvider.fromString(request.provider)
+            ?: throw NotValidInputException(optional = "provider not valid")
         val result = socialLoginService.socialLogin(
             provider = provider,
             accessToken = request.accessToken,

@@ -1,3 +1,5 @@
 package kr.nagaza.nagazaserver.domain.exception
 
-class DomainException: RuntimeException()
+abstract class DomainException(val code: ErrorCode, val optional: String? = null): RuntimeException(code.message)
+
+class NotValidInputException(optional: String? = null): DomainException(ErrorCode.NOT_VALID_INPUT, optional = optional)

@@ -2,6 +2,7 @@ package kr.nagaza.nagazaserver.domain.service
 
 import jakarta.transaction.Transactional
 import kr.nagaza.nagazaserver.domain.exception.DomainException
+import kr.nagaza.nagazaserver.domain.exception.UserNotFoundException
 import kr.nagaza.nagazaserver.domain.model.User
 import kr.nagaza.nagazaserver.domain.repository.UserRepository
 import org.springframework.stereotype.Service
@@ -12,12 +13,12 @@ class UserService(
 ) {
     @Transactional
     fun getMeInfo(userId: String): User {
-        return userRepository.findById(userId) ?: throw DomainException()
+        return userRepository.findById(userId) ?: throw UserNotFoundException()
     }
 
     @Transactional
     fun updateNickName(userId: String, nickname: String): User {
-        val user = userRepository.findById(userId) ?: throw DomainException()
+        val user = userRepository.findById(userId) ?: throw UserNotFoundException()
         val newUser = user.copy(
             nickname = nickname,
         )
@@ -26,7 +27,7 @@ class UserService(
 
     @Transactional
     fun updateProfileImageUrl(userId: String, profileImageUrl: String?): User {
-        val user = userRepository.findById(userId) ?: throw DomainException()
+        val user = userRepository.findById(userId) ?: throw UserNotFoundException()
         val newUser = user.copy(
             profileImageUrl = profileImageUrl,
         )

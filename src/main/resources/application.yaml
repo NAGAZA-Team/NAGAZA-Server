@@ -6,10 +6,9 @@ spring:
     password: ${MYSQL_PASSWORD}
   flyway:
     enabled: false
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
 app:
+  headers:
+    authToken: X-AUTH-TOKEN
   token:
     secret: ${AUTH_SECRET}
     expiration:
