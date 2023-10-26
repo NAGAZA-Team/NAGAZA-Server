@@ -8,6 +8,7 @@ enum class ErrorCode(
     NOT_VALID_INPUT("CM0002", "입력값이 올바르지 않습니다."),
     NOT_AUTHORIZED("CM0003", "인증되지 않은 사용자입니다."),
     NOT_AUTHENTICATED("CM0004", "로그인이 필요합니다."),
+    APP_VERSION_EXCEPTION("CM0005", "앱 업그레이드가 필요합니다"),
 
     TOKEN_NOT_VALID("AE0001", "토큰이 올바르지 않거나 만료되었습니다."),
     OAUTH_LOGIN_FAILED("AE0002", "oAuth 인증에 실패하였습니다"),

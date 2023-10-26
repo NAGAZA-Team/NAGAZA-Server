@@ -3,11 +3,15 @@ package kr.nagaza.nagazaserver.presenter.restapi.advice
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.HandlerInterceptor
 
 @Component
-class RequestInterceptor : HandlerInterceptor {
+class RequestInterceptor(
+    @Value("\${app.headers.appVersion}") private val appVersionHeaderName: String,
+    @Value("\${app.headers.osVersion}") private val osVersionHeaderName: String,
+) : HandlerInterceptor {
 
     companion object {
         const val START_TIME_ATTR_NAME = "startTime"
@@ -37,8 +41,8 @@ class RequestInterceptor : HandlerInterceptor {
         val origin = request.getHeader("X-Forwarded-For") ?: request.remoteAddr
         val executionTime = endTime - startTime
 
-        val appVersion = request.getHeader("X-APP-VERSION") ?: "UNKNOWN VERSION"
-        val osVersion = request.getHeader("X-OS-VERSION") ?: "UNKNOWN OS"
+        val appVersion = request.getHeader(appVersionHeaderName) ?: "UNKNOWN VERSION"
+        val osVersion = request.getHeader(osVersionHeaderName) ?: "UNKNOWN OS"
 
         log.info(
             "[{}] [{}] {} {} {} {} {}ms",

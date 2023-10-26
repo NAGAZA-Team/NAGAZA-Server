@@ -1,3 +1,13 @@
+CREATE TABLE app_info
+(
+    app_version VARCHAR(64) NOT NULL COMMENT '앱버전',
+    in_service BOOLEAN NOT NULL COMMENT '서비스 여부',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_At DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY app_info_pk(app_version)
+) DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_unicode_ci COMMENT='앱정보';
+
 CREATE TABLE user
 (
     user_id         CHAR(26)    NOT NULL,

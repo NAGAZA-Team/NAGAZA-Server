@@ -1,5 +1,6 @@
 package kr.nagaza.nagazaserver.config
 
+import kr.nagaza.nagazaserver.presenter.restapi.advice.filter.ApplicationFilter
 import kr.nagaza.nagazaserver.presenter.restapi.advice.filter.AuthEntryPoint
 import kr.nagaza.nagazaserver.presenter.restapi.advice.filter.CustomJWTFilter
 import kr.nagaza.nagazaserver.presenter.restapi.advice.filter.WebAccessDeniedHandler
@@ -13,6 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 class WebSecurityConfig(
     private val jwtFilter: CustomJWTFilter,
+    private val applicationFilter: ApplicationFilter,
     private val authEntryPoint: AuthEntryPoint,
     private val webAccessDeniedHandler: WebAccessDeniedHandler,
 ) {
@@ -42,6 +44,7 @@ class WebSecurityConfig(
             .csrf {
                 it.disable()
             }
+            .addFilterBefore(applicationFilter, UsernamePasswordAuthenticationFilter::class.java)
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
             .exceptionHandling {
                 it.authenticationEntryPoint(authEntryPoint)
