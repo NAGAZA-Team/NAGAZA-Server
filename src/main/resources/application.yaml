@@ -4,8 +4,28 @@ spring:
     url: ${MYSQL_URL}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
+    hikari:
+      auto-commit: false
+      pool-name: sql-pool
+      minimum-idle: 10
+      maximum-pool-size: 20
+      connection-timeout: 60000
+      max-lifetime: 1800000
+      idle-timeout: 60000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  jpa:
+    hibernate:
+      ddl-auto: none
   flyway:
     enabled: false
+    baseline-on-migrate: true
+logging:
+  pattern:
+    console: "%clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
 app:
   headers:
     authToken: X-AUTH-TOKEN

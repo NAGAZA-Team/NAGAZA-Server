@@ -20,6 +20,7 @@ class SwaggerConfig {
             description = "기본 나가자 API 서버"
         }))
 
+
     private fun apiInfo() = Info()
         .title("나가자 API")
         .contact(Contact().apply {
@@ -29,4 +30,5 @@ class SwaggerConfig {
         .license(License())
         .description("나가자 API 명세입니다.")
         .version("1.0.0")
+
 }
