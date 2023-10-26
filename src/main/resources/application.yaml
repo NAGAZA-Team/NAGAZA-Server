@@ -6,7 +6,7 @@ spring:
     password: ${MYSQL_PASSWORD}
     hikari:
       auto-commit: false
-      pool-name: sql-pool
+      pool-name: nagaza-sql-pool
       minimum-idle: 10
       maximum-pool-size: 20
       connection-timeout: 60000
