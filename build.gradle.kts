@@ -47,6 +47,11 @@ dependencies {
 	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 	kapt("com.querydsl:querydsl-kotlin-codegen:5.0.0")
 
+	// https://mvnrepository.com/artifact/org.mockito/mockito-core
+	testImplementation("org.mockito:mockito-core:5.6.0")
+	testImplementation("org.mockito:mockito-junit-jupiter:5.6.0")
+	testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+
 }
 
 tasks.withType<KotlinCompile> {
