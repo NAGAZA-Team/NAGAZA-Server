@@ -6,6 +6,7 @@ import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateNicknameReques
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateProfileImageUrlRequest
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomReviewResponse
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.MeResponse
+import kr.nagaza.nagazaserver.presenter.restapi.dto.response.MeSummaryResponse
 import org.springframework.stereotype.Controller
 
 @Controller
@@ -46,6 +47,10 @@ class MeController(
     }
 
     override fun quitNagaza(userId: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMySummary(userId: String): MeSummaryResponse {
         TODO("Not yet implemented")
     }
 }

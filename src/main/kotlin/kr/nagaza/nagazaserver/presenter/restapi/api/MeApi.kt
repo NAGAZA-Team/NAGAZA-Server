@@ -8,6 +8,7 @@ import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateNicknameReques
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateProfileImageUrlRequest
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomReviewResponse
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.MeResponse
+import kr.nagaza.nagazaserver.presenter.restapi.dto.response.MeSummaryResponse
 import org.springframework.web.bind.annotation.*
 
 @Tag(name = "내 정보 API", description = "내 정보 관련 API")
@@ -45,4 +46,10 @@ interface MeApi {
     fun quitNagaza(
         @RequestUser userId: String,
     )
+
+    @Operation(summary = "내 통계 정보 확인", description = "나의 통계 정보(리뷰 수, 찜 수 등)을 확인합니다.")
+    @GetMapping("/summary")
+    fun getMySummary(
+        @RequestUser userId: String,
+    ): MeSummaryResponse
 }
