@@ -46,7 +46,7 @@ CREATE TABLE cafe_room (
                            genre VARCHAR(16) NOT NULL,
                            timeout INT NOT NULL,
                            recommend_user INT NOT NULL,
-                           room_img_url VARCHAR(128) NOT NULL,
+                           room_img_url VARCHAR(128),
                            description TEXT NOT NULL DEFAULT '',
                            PRIMARY KEY (room_id),
                            FOREIGN KEY cafe_room_fk1 (cafe_id) REFERENCES cafe(cafe_id) ON DELETE CASCADE

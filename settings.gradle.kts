@@ -1,1 +1,1 @@
-rootProject.name = "nagaza-server"
+rootProject.name = "NAGAZA-Server"
