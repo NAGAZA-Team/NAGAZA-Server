@@ -7,5 +7,5 @@ import jakarta.validation.constraints.NotBlank
 data class UpdateNicknameRequest(
     @NotBlank
     @Schema(description = "변경하고자 하는 닉네임", example = "CChuYong")
-    val nickName: String,
+    val nickname: String,
 )

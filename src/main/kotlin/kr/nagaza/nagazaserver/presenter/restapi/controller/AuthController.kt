@@ -29,6 +29,15 @@ class AuthController(
         )
     }
 
+    override fun requestMockLogin(): SocialLoginResponse {
+        val result = socialLoginService.generateMockUserToken()
+        return SocialLoginResponse(
+            accessToken = result.token.accessToken,
+            refreshToken = result.token.refreshToken,
+            isFirstLogin = result.isFirstLogin,
+        )
+    }
+
     override fun refreshToken(
         request: RefreshTokenRequest,
     ): SocialLoginResponse {

@@ -37,6 +37,7 @@ dependencies {
 	implementation("com.nimbusds:nimbus-jose-jwt:9.37")
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 	implementation("com.github.f4b6a3:ulid-creator:5.2.0")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-kotlin

@@ -21,6 +21,10 @@ interface AuthApi {
         @RequestBody @Valid request: SocialLoginRequest,
     ): SocialLoginResponse
 
+    @Operation(summary = "테스트용 토큰 발급", description = "테스트용 토큰을 발급합니다.")
+    @PostMapping("/mock")
+    fun requestMockLogin(): SocialLoginResponse
+
     @Operation(summary = "토큰 갱신", description = "토큰을 갱신합니다.")
     @PostMapping("/refresh")
     fun refreshToken(

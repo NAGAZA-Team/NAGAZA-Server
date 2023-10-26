@@ -1,5 +1,7 @@
 package kr.nagaza.nagazaserver.presenter.restapi.advice
 
+import com.fasterxml.jackson.databind.exc.MismatchedInputException
+import com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException
 import jakarta.servlet.http.HttpServletRequest
 import kr.nagaza.nagazaserver.domain.exception.DomainException
 import kr.nagaza.nagazaserver.domain.exception.ErrorCode
@@ -11,9 +13,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class RestExceptionHandler {
-    @ExceptionHandler
+    @ExceptionHandler(value = [MethodArgumentNotValidException::class, MissingKotlinParameterException::class, MismatchedInputException::class])
     fun validationException(
-        exception: MethodArgumentNotValidException,
+        exception: Exception,
         request: HttpServletRequest,
     ): ResponseEntity<ErrorResponse> {
         return ResponseEntity

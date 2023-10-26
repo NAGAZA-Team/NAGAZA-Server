@@ -47,6 +47,17 @@ class SocialLoginService(
         )
     }
 
+    fun generateMockUserToken(): SocialLoginResult {
+        val token = tokenProvider.generateToken(
+            userId = "01HDNFJHCNS5E2W35YTB030TJ8"
+        )
+
+        return SocialLoginResult(
+            token = token,
+            isFirstLogin = false,
+        )
+    }
+
     fun refreshToken(
         refreshToken: String,
     ): SocialLoginResult {

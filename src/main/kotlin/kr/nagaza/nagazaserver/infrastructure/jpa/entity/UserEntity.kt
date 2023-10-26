@@ -14,7 +14,7 @@ class UserEntity(
     @Column(name = "nickname")
     val nickname: String,
 
-    @Column(name = "profile_image_url")
+    @Column(name = "profile_img_url")
     val profileImageUrl: String?,
 ) {
     fun toModel() = User(

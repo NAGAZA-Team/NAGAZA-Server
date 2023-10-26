@@ -1,6 +1,6 @@
 CREATE TABLE user
 (
-    user_id         CHAR(20)    NOT NULL,
+    user_id         CHAR(26)    NOT NULL,
     nickname        VARCHAR(64) NOT NULL,
     profile_img_url VARCHAR(128),
     created_at      DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -13,7 +13,7 @@ CREATE TABLE social_user
 (
     social_provider   VARCHAR(16)  NOT NULL,
     social_identifier VARCHAR(128) NOT NULL,
-    user_id           CHAR(20)     NOT NULL,
+    user_id           CHAR(26)     NOT NULL,
     created_at        DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (social_provider, social_identifier),
     FOREIGN KEY social_user_fk1 (user_id) REFERENCES user (user_id) ON DELETE CASCADE
@@ -22,7 +22,7 @@ CREATE TABLE social_user
 
 CREATE TABLE cafe_franchise
 (
-    franchise_id   CHAR(20)    NOT NULL,
+    franchise_id   CHAR(26)    NOT NULL,
     franchise_name VARCHAR(64) NOT NULL,
     PRIMARY KEY (franchise_id)
 ) DEFAULT CHARSET = utf8mb4
@@ -30,8 +30,8 @@ CREATE TABLE cafe_franchise
 
 CREATE TABLE cafe
 (
-    cafe_id      CHAR(20)     NOT NULL,
-    franchise_id CHAR(20)              DEFAULT NULL,
+    cafe_id      CHAR(26)     NOT NULL,
+    franchise_id CHAR(26)              DEFAULT NULL,
     cafe_name    VARCHAR(128) NOT NULL,
     description  TEXT         NOT NULL DEFAULT '',
     address      VARCHAR(255),
@@ -46,8 +46,8 @@ CREATE TABLE cafe
 
 CREATE TABLE cafe_room
 (
-    room_id        CHAR(20)    NOT NULL,
-    cafe_id        CHAR(20)    NOT NULL,
+    room_id        CHAR(26)    NOT NULL,
+    cafe_id        CHAR(26)    NOT NULL,
     genre          VARCHAR(16) NOT NULL,
     timeout        INT         NOT NULL,
     recommend_user INT         NOT NULL,
@@ -60,8 +60,8 @@ CREATE TABLE cafe_room
 
 CREATE TABLE cafe_room_like
 (
-    room_id    CHAR(20) NOT NULL,
-    user_id    CHAR(20) NOT NULL,
+    room_id    CHAR(26) NOT NULL,
+    user_id    CHAR(26) NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (room_id, user_id),
     FOREIGN KEY cafe_room_like_fk1 (room_id) REFERENCES cafe_room (room_id) ON DELETE CASCADE,
@@ -71,9 +71,9 @@ CREATE TABLE cafe_room_like
 
 CREATE TABLE cafe_room_review
 (
-    review_id  CHAR(20) NOT NULL,
-    room_id    CHAR(20) NOT NULL,
-    user_id    CHAR(20) NOT NULL,
+    review_id  CHAR(26) NOT NULL,
+    room_id    CHAR(26) NOT NULL,
+    user_id    CHAR(26) NOT NULL,
     content    TEXT     NOT NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (review_id),
@@ -84,7 +84,7 @@ CREATE TABLE cafe_room_review
 
 CREATE TABLE cafe_room_review_det
 (
-    review_id        CHAR(20) NOT NULL,
+    review_id        CHAR(26) NOT NULL,
     user_cnt         INT,
     is_cleared       BOOL,
     is_life_theme    BOOL,
@@ -101,10 +101,13 @@ CREATE TABLE cafe_room_review_det
 
 CREATE TABLE cafe_room_review_det_opt
 (
-    review_id    CHAR(20)    NOT NULL,
+    review_id    CHAR(26)    NOT NULL,
     option_type  VARCHAR(16) NOT NULL,
     option_value BOOL        NOT NULL,
     PRIMARY KEY (review_id, option_type),
     FOREIGN KEY cafe_room_review_det_opt_fk1 (review_id) REFERENCES cafe_room_review (review_id) ON DELETE CASCADE
 ) DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci comment '방탈출카페방리뷰디테일선택';
+
+# MOCK DML
+INSERT INTO user (user_id, nickname, profile_img_url) VALUES ('01HDNFJHCNS5E2W35YTB030TJ8', '테스트용사용자', 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png');
