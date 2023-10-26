@@ -34,6 +34,12 @@ class CafeEntity(
 
     @Column(name = "location_lng")
     val locationLng: Double?,
+
+    @Column(name = "addr_1")
+    val addressOne: String?,
+
+    @Column(name = "addr_2")
+    val addressTwo: String?
 ) {
     fun toModel() = Cafe(
         id = cafeId,
@@ -45,6 +51,8 @@ class CafeEntity(
         phoneNumber = phoneNumber,
         locationLat = locationLat,
         locationLng = locationLng,
+        addressOne = addressOne,
+        addressTwo = addressTwo,
     )
 
     companion object {
@@ -58,6 +66,8 @@ class CafeEntity(
             phoneNumber = cafe.phoneNumber,
             locationLat = cafe.locationLat,
             locationLng = cafe.locationLng,
+            addressOne = cafe.addressOne,
+            addressTwo = cafe.addressTwo,
         )
     }
 }

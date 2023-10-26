@@ -10,6 +10,7 @@ class CafeService(
     private val cafeRepository: CafeRepository,
 ) {
     fun getAllCafes() = cafeRepository.findAll()
+    fun getAllByAddresses(addressOne: String, addressTwo: String): List<Cafe> = cafeRepository.findAllByAddresses(addressOne, addressTwo)
     fun getById(cafeId: String): Cafe {
         return cafeRepository.findById(cafeId) ?: throw CafeNotFoundException()
     }

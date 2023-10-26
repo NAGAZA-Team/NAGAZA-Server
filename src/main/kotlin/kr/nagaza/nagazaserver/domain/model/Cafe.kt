@@ -10,4 +10,6 @@ data class Cafe(
     val phoneNumber: String?,
     val locationLat: Double?,
     val locationLng: Double?,
+    val addressOne: String?,
+    val addressTwo: String?,
 )

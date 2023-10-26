@@ -39,6 +39,8 @@ CREATE TABLE cafe
     phone_number VARCHAR(36),
     location_lat DOUBLE,
     location_lng DOUBLE,
+    addr_1     VARCHAR(16),
+    addr_2     VARCHAR(16),
     PRIMARY KEY (cafe_id),
     FOREIGN KEY cafe_fk1 (franchise_id) REFERENCES cafe_franchise (franchise_id) ON DELETE SET NULL
 ) DEFAULT CHARSET = utf8mb4

@@ -22,4 +22,11 @@ class CafeRepositoryImpl(
         return jpaCafeRepository.save(CafeEntity.fromModel(cafe)).toModel()
     }
 
+    override fun findAllByAddresses(addressOne: String, addressTwo: String): List<Cafe> {
+        return jpaCafeRepository.findAllByAddressOneAndAddressTwo(
+            addressOne = addressOne,
+            addressTwo = addressTwo,
+        ).map { it.toModel() }
+    }
+
 }
