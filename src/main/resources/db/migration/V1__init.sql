@@ -1,9 +1,9 @@
 CREATE TABLE app_info
 (
     app_version VARCHAR(64) NOT NULL COMMENT '앱버전',
-    in_service BOOLEAN NOT NULL COMMENT '서비스 여부',
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_At DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    in_service  BOOLEAN     NOT NULL COMMENT '서비스 여부',
+    created_at  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_At  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY app_info_pk(app_version)
 ) DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_unicode_ci COMMENT='앱정보';
@@ -49,8 +49,8 @@ CREATE TABLE cafe
     phone_number VARCHAR(36),
     location_lat DOUBLE,
     location_lng DOUBLE,
-    addr_1     VARCHAR(16),
-    addr_2     VARCHAR(16),
+    addr_1       VARCHAR(16),
+    addr_2       VARCHAR(16),
     PRIMARY KEY (cafe_id),
     FOREIGN KEY cafe_fk1 (franchise_id) REFERENCES cafe_franchise (franchise_id) ON DELETE SET NULL
 ) DEFAULT CHARSET = utf8mb4
@@ -121,5 +121,6 @@ CREATE TABLE cafe_room_review_det_opt
 ) DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci comment '방탈출카페방리뷰디테일선택';
 
-# MOCK DML
+#
+MOCK DML
 INSERT INTO user (user_id, nickname, profile_img_url) VALUES ('01HDNFJHCNS5E2W35YTB030TJ8', '테스트용사용자', 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png');

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller
 @Controller
 class CafeRoomController(
     private val cafeRoomService: CafeRoomService,
-): CafeRoomApi {
+) : CafeRoomApi {
     override fun getCafeRooms(cafeId: String): List<CafeRoomResponse> {
         return cafeRoomService.getRoomsByCafeId(cafeId)
             .map { CafeRoomResponse.fromModel(it) }

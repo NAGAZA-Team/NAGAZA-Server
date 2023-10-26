@@ -29,10 +29,10 @@ class CafeRoomServiceTest {
             phoneNumber = "test",
             webUrl = "test",
         )
-        val cafeRepository = mock<CafeRepository>() {
+        val cafeRepository = mock<CafeRepository> {
             on { findById(cafeId) } doReturn cafe
         }
-        val cafeRoomRepository = mock<CafeRoomRepository>() {
+        val cafeRoomRepository = mock<CafeRoomRepository> {
             on { getAllRoomByCafeId(cafeId) } doReturn listOf()
         }
         val cafeRoomService = CafeRoomService(cafeRepository, cafeRoomRepository)
@@ -55,7 +55,7 @@ class CafeRoomServiceTest {
             recommendedUserCnt = 0,
             roomImgUrl = null
         )
-        val cafeRoomRepository = mock<CafeRoomRepository>() {
+        val cafeRoomRepository = mock<CafeRoomRepository> {
             on { findByRoomId(roomId) } doReturn cafeRoom
         }
         val cafeRoomService = CafeRoomService(mock(), cafeRoomRepository)

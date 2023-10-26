@@ -29,15 +29,15 @@ class SocialLoginServiceTest {
             accessToken = "",
             refreshToken = "",
         )
-        val oAuthProvider = mock<OAuthProvider>() {
+        val oAuthProvider = mock<OAuthProvider> {
             on { authenticate(provider, accessToken) } doReturn oAuthResult
         }
 
-        val socialUserRepository = mock<SocialUserRepository>() {
+        val socialUserRepository = mock<SocialUserRepository> {
             on { getSocialUser(any(), any()) } doReturn oAuthResult
         }
 
-        val tokenProvider = mock<TokenProvider>() {
+        val tokenProvider = mock<TokenProvider> {
             on { generateToken(any()) } doReturn authToken
         }
 
@@ -71,24 +71,24 @@ class SocialLoginServiceTest {
             accessToken = "",
             refreshToken = "",
         )
-        val oAuthProvider = mock<OAuthProvider>() {
+        val oAuthProvider = mock<OAuthProvider> {
             on { authenticate(provider, accessToken) } doReturn oAuthResult
         }
 
-        val socialUserRepository = mock<SocialUserRepository>() {
+        val socialUserRepository = mock<SocialUserRepository> {
             on { getSocialUser(any(), any()) } doReturn null
-            on { saveSocialUser(any())} doReturn oAuthResult
+            on { saveSocialUser(any()) } doReturn oAuthResult
         }
 
-        val tokenProvider = mock<TokenProvider>() {
+        val tokenProvider = mock<TokenProvider> {
             on { generateToken(any()) } doReturn authToken
         }
 
-        val userRepository = mock<UserRepository>() {
+        val userRepository = mock<UserRepository> {
             on { saveUser(any()) } doAnswer { it.arguments[0] as User }
         }
 
-        val identifierProvider = mock<IdentifierProvider>() {
+        val identifierProvider = mock<IdentifierProvider> {
             on { generate() } doReturn "asdf"
         }
 
@@ -109,13 +109,13 @@ class SocialLoginServiceTest {
     }
 
     @Test
-    fun `generateMockUserToken() 테스트`(){
+    fun `generateMockUserToken() 테스트`() {
         //given
         val authToken = AuthToken(
             accessToken = "",
             refreshToken = "",
         )
-        val tokenProvider = mock<TokenProvider>() {
+        val tokenProvider = mock<TokenProvider> {
             on { generateToken(any()) } doReturn authToken
         }
 
@@ -140,7 +140,7 @@ class SocialLoginServiceTest {
             accessToken = "",
             refreshToken = "",
         )
-        val tokenProvider = mock<TokenProvider>() {
+        val tokenProvider = mock<TokenProvider> {
             on { generateToken(any()) } doReturn authToken
             on { getUserIdFromToken(any()) } doReturn "userId"
         }

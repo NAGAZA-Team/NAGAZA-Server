@@ -18,11 +18,11 @@ import org.mockito.kotlin.mock
 @ExtendWith(MockitoExtension::class)
 class UserServiceTest {
     @Test
-    fun `getUserInfo() 테스트`(){
+    fun `getUserInfo() 테스트`() {
         // given
         val userId = "01HDNFJHCNS5E2W35YTB030TJ8"
         val mockUser = User(userId, "test", "test")
-        val userRepository = mock<UserRepository>() {
+        val userRepository = mock<UserRepository> {
             on { findById(userId) } doReturn mockUser
         }
         val userService = UserService(userRepository, mock(), mock())
@@ -40,7 +40,7 @@ class UserServiceTest {
         // given
         val userId = "01HDNFJHCNS5E2W35YTB030TJ8"
         val mockUser = User(userId, "test", "test")
-        val userRepository = mock<UserRepository>() {
+        val userRepository = mock<UserRepository> {
             on { findById(userId) } doReturn mockUser
             on { saveUser(any()) } doAnswer { it.arguments[0] as User }
         }
@@ -59,7 +59,7 @@ class UserServiceTest {
         // given
         val userId = "01HDNFJHCNS5E2W35YTB030TJ8"
         val mockUser = User(userId, "test", "test")
-        val userRepository = mock<UserRepository>() {
+        val userRepository = mock<UserRepository> {
             on { findById(userId) } doReturn mockUser
             on { saveUser(any()) } doAnswer { it.arguments[0] as User }
         }
@@ -83,11 +83,11 @@ class UserServiceTest {
             userId = userId,
             identifier = "test",
         )
-        val userRepository = mock<UserRepository>() {
+        val userRepository = mock<UserRepository> {
             on { findById(userId) } doReturn mockUser
             on { saveUser(any()) } doAnswer { it.arguments[0] as User }
         }
-        val socialUserRepository = mock<SocialUserRepository>() {
+        val socialUserRepository = mock<SocialUserRepository> {
             on { findAllByUserId(userId) } doReturn listOf(mockSocialUser)
             on { deleteUser(any()) } doAnswer { }
         }
@@ -106,7 +106,7 @@ class UserServiceTest {
         val reviewCountPool = listOf(0, 10, 30, 50, 100)
         reviewCountPool.forEachIndexed { index, count ->
             val mockUserSummary = UserSummaryProjection(userId, count.toLong(), 1)
-            val qUserRepository = mock<QUserRepository>() {
+            val qUserRepository = mock<QUserRepository> {
                 on { getUserSummary(userId) } doReturn mockUserSummary
             }
             val userService = UserService(mock(), mock(), qUserRepository)

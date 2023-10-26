@@ -13,8 +13,8 @@ class CafeRoomReviewServiceTest {
     @Test
     fun `getAllByUserId() 테스트`() {
         // given
-        val cafeRoomReviewRepository = mock<CafeRoomReviewRepository>() {
-             on { getAllByUserId(any()) } doReturn listOf()
+        val cafeRoomReviewRepository = mock<CafeRoomReviewRepository> {
+            on { getAllByUserId(any()) } doReturn listOf()
         }
         val cafeRoomReviewService = CafeRoomReviewService(cafeRoomReviewRepository)
         // when
@@ -26,7 +26,7 @@ class CafeRoomReviewServiceTest {
     @Test
     fun `getAllByRoomId() 테스트`() {
         // given
-        val cafeRoomReviewRepository = mock<CafeRoomReviewRepository>() {
+        val cafeRoomReviewRepository = mock<CafeRoomReviewRepository> {
             on { getAllByRoomId(any()) } doReturn listOf()
         }
         val cafeRoomReviewService = CafeRoomReviewService(cafeRoomReviewRepository)

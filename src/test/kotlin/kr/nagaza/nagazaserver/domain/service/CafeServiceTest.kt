@@ -8,7 +8,6 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.on
 
 @ExtendWith(MockitoExtension::class)
 class CafeServiceTest {

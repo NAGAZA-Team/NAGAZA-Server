@@ -17,7 +17,7 @@ class AppInfoServiceTest {
             appVersion = "1.0.0",
             inService = true,
         )
-        val jpaRepository = mock<JpaAppInfoRepository>() {
+        val jpaRepository = mock<JpaAppInfoRepository> {
             on { findAll() } doReturn listOf(appInfoEntity)
         }
         val appInfoService = AppInfoService(jpaRepository)

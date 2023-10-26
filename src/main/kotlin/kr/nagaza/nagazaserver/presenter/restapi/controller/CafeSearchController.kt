@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller
 @Controller
 class CafeSearchController(
     private val cafeService: CafeService,
-): CafeSearchApi {
+) : CafeSearchApi {
     override fun searchCafe(query: String): List<CafeResponse> {
         TODO("Not yet implemented")
     }

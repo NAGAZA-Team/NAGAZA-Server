@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class CafeRoomReviewRepositoryImpl(
     private val cafeRoomReviewRepository: JpaCafeRoomReviewRepository,
-): CafeRoomReviewRepository {
+) : CafeRoomReviewRepository {
     override fun getAllByUserId(userId: String): List<CafeRoomReview> {
         return cafeRoomReviewRepository
             .findAllByUserId(userId)
