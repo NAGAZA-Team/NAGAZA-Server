@@ -28,4 +28,5 @@ jobs:
         id: build-image
         run: | 
           chmod +x scripts/build.sh &&
+          chmod +x ./gradlew &&
           /bin/bash scripts/build.sh
