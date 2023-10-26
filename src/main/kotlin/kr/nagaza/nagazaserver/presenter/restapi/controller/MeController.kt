@@ -18,7 +18,7 @@ class MeController(
     override fun getMe(
         userId: String,
     ): MeResponse {
-        val me = userService.getMeInfo(userId)
+        val me = userService.getUserInfo(userId)
         return MeResponse.fromModel(me)
     }
 
@@ -55,6 +55,7 @@ class MeController(
     }
 
     override fun getMySummary(userId: String): MeSummaryResponse {
-        TODO("Not yet implemented")
+        return userService.getUserSummary(userId)
+            .let(MeSummaryResponse::fromModel)
     }
 }

@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
+	kotlin("kapt") version "1.8.22"
 }
 
 group = "kr.nagaza"
@@ -42,6 +43,10 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-kotlin
 	runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.7.0")
+
+	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+	kapt("com.querydsl:querydsl-kotlin-codegen:5.0.0")
 
 }
 
