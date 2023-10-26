@@ -6,6 +6,7 @@ import jakarta.validation.Valid
 import kr.nagaza.nagazaserver.presenter.restapi.advice.RequestUser
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateNicknameRequest
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateProfileImageUrlRequest
+import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomReviewResponse
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.MeResponse
 import org.springframework.web.bind.annotation.*
 
@@ -18,6 +19,12 @@ interface MeApi {
     fun getMe(
         @RequestUser userId: String,
     ): MeResponse
+
+    @Operation(summary = "내가 작성한 리뷰 목록 조회", description = "내가 작성한 리뷰 목록을 조회합니다.")
+    @GetMapping("/reviews")
+    fun getMyReviews(
+        @RequestUser userId: String
+    ): List<CafeRoomReviewResponse>
 
     @Operation(summary = "닉네임 변경", description = "내 닉네임을 변경합니다.")
     @PatchMapping("/nickname")
@@ -32,4 +39,10 @@ interface MeApi {
         @RequestUser userId: String,
         @RequestBody @Valid request: UpdateProfileImageUrlRequest,
     ): MeResponse
+
+    @Operation(summary = "회원 탈퇴", description = "회원 탈퇴합니다.")
+    @PostMapping("/quit")
+    fun quitNagaza(
+        @RequestUser userId: String,
+    )
 }

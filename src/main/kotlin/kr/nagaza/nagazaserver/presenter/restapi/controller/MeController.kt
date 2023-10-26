@@ -4,6 +4,7 @@ import kr.nagaza.nagazaserver.domain.service.UserService
 import kr.nagaza.nagazaserver.presenter.restapi.api.MeApi
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateNicknameRequest
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateProfileImageUrlRequest
+import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomReviewResponse
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.MeResponse
 import org.springframework.stereotype.Controller
 
@@ -16,6 +17,10 @@ class MeController(
     ): MeResponse {
         val me = userService.getMeInfo(userId)
         return MeResponse.fromModel(me)
+    }
+
+    override fun getMyReviews(userId: String): List<CafeRoomReviewResponse> {
+        TODO("Not yet implemented")
     }
 
     override fun updateNickname(
@@ -38,5 +43,9 @@ class MeController(
             profileImageUrl = request.profileImageUrl,
         )
         return MeResponse.fromModel(result)
+    }
+
+    override fun quitNagaza(userId: String) {
+        TODO("Not yet implemented")
     }
 }
