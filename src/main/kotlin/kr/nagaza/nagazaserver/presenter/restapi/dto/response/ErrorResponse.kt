@@ -1,7 +1,9 @@
 package kr.nagaza.nagazaserver.presenter.restapi.dto.response
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import kr.nagaza.nagazaserver.domain.exception.ErrorCode
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class ErrorResponse(
     val code: String,
     val message: String,

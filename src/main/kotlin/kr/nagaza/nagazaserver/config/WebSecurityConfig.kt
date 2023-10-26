@@ -32,7 +32,12 @@ class WebSecurityConfig(
                     .requestMatchers("/v1/auth/**").permitAll()
                     .requestMatchers("/health-check").permitAll()
                     .requestMatchers("/actuator/**").permitAll()
-                    .anyRequest().permitAll()
+                    //-- Swagger Security Config Start
+                    .requestMatchers("/swagger-ui/**").permitAll()
+                    .requestMatchers("/swagger-ui.html").permitAll()
+                    .requestMatchers("/v3/api-docs/**").permitAll()
+                    //-- Swagger Security Config end
+                    .anyRequest().authenticated()
             }
             .csrf {
                 it.disable()
