@@ -1,7 +1,6 @@
 package kr.nagaza.nagazaserver.domain.service
 
 import jakarta.transaction.Transactional
-import kr.nagaza.nagazaserver.domain.exception.DomainException
 import kr.nagaza.nagazaserver.domain.exception.UserNotFoundException
 import kr.nagaza.nagazaserver.domain.model.User
 import kr.nagaza.nagazaserver.domain.repository.UserRepository

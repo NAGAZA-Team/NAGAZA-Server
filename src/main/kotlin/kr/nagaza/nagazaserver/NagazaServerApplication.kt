@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class NagazaServerApplication
 
 fun main(args: Array<String>) {
-	runApplication<NagazaServerApplication>(*args)
+    runApplication<NagazaServerApplication>(*args)
 }

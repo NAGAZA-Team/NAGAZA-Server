@@ -2,8 +2,10 @@ package kr.nagaza.nagazaserver.domain.service
 
 import jakarta.transaction.Transactional
 import kr.nagaza.nagazaserver.domain.exception.AuthTokenNotValidException
-import kr.nagaza.nagazaserver.domain.exception.DomainException
-import kr.nagaza.nagazaserver.domain.model.*
+import kr.nagaza.nagazaserver.domain.model.SocialLoginResult
+import kr.nagaza.nagazaserver.domain.model.SocialProvider
+import kr.nagaza.nagazaserver.domain.model.SocialUser
+import kr.nagaza.nagazaserver.domain.model.User
 import kr.nagaza.nagazaserver.domain.repository.*
 import kr.nagaza.nagazaserver.util.MockNickGenerator
 import org.springframework.stereotype.Service

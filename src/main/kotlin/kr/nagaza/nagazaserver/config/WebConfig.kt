@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class WebConfig(
     private val requestUserResolver: RequestUserArgumentResolver,
     private val requestInterceptor: RequestInterceptor,
-): WebMvcConfigurer {
+) : WebMvcConfigurer {
     override fun addArgumentResolvers(resolvers: MutableList<HandlerMethodArgumentResolver>) {
         resolvers.add(requestUserResolver)
     }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserRepositoryImpl(
     private val jpaUserRepository: JpaUserRepository,
-): UserRepository {
+) : UserRepository {
     override fun saveUser(user: User): User {
         return jpaUserRepository.save(
             UserEntity.fromModel(user)

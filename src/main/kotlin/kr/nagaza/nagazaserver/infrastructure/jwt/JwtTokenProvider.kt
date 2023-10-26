@@ -6,7 +6,6 @@ import kr.nagaza.nagazaserver.domain.model.AuthToken
 import kr.nagaza.nagazaserver.domain.repository.TokenProvider
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
-import java.lang.Exception
 import java.security.Key
 import java.util.*
 import javax.crypto.spec.SecretKeySpec
@@ -16,8 +15,9 @@ class JwtTokenProvider(
     @Value("\${app.token.secret}") private val secret: String,
     @Value("\${app.token.expiration.access}") private val accessTokenExpiration: Long,
     @Value("\${app.token.expiration.refresh}") private val refreshTokenExpiration: Long,
-): TokenProvider {
+) : TokenProvider {
     private lateinit var signKey: Key
+
     init {
         val bytes = secret.toByteArray()
         signKey = SecretKeySpec(bytes, SignatureAlgorithm.HS256.jcaName)
@@ -33,20 +33,20 @@ class JwtTokenProvider(
     }
 
     override fun isTokenValid(token: String): Boolean {
-        return try{
+        return try {
             Jwts.parserBuilder().setSigningKey(signKey).build()
                 .parseClaimsJws(token).body["id"] as String
             true
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             false
         }
     }
 
     override fun getUserIdFromToken(token: String): String? {
-        return try{
+        return try {
             Jwts.parserBuilder().setSigningKey(signKey).build()
                 .parseClaimsJws(token).body["id"] as String
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             null
         }
     }

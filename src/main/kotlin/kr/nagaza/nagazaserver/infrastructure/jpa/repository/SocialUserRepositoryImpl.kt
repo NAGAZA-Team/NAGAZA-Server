@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class SocialUserRepositoryImpl(
     private val jpaSocialUserRepository: JpaSocialUserRepository,
-): SocialUserRepository {
+) : SocialUserRepository {
     override fun getSocialUser(provider: SocialProvider, identifier: String): SocialUser? {
         return jpaSocialUserRepository.findByIdOrNull(
             SocialUserEntityKey(

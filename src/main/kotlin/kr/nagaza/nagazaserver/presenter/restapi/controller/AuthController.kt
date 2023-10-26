@@ -3,7 +3,6 @@ package kr.nagaza.nagazaserver.presenter.restapi.controller
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
-import kr.nagaza.nagazaserver.domain.exception.DomainException
 import kr.nagaza.nagazaserver.domain.exception.NotValidInputException
 import kr.nagaza.nagazaserver.domain.model.SocialProvider
 import kr.nagaza.nagazaserver.domain.service.SocialLoginService

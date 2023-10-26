@@ -37,7 +37,7 @@ class CafeRoomEntity(
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
-    val reviews: MutableList<CafeRoomReviewEntity> = mutableListOf()
+    val reviews: MutableList<CafeRoomReviewEntity> = mutableListOf(),
 ) {
     fun toModel() = CafeRoom(
         roomId = roomId,

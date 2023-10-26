@@ -8,11 +8,7 @@ import kr.nagaza.nagazaserver.presenter.restapi.advice.RequestUser
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateNicknameRequest
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.UpdateProfileImageUrlRequest
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.MeResponse
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @Tag(name = "내 정보 API", description = "내 정보 관련 API")
 @RestController

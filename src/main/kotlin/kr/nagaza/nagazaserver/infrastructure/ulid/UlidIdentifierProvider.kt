@@ -5,7 +5,7 @@ import kr.nagaza.nagazaserver.domain.repository.IdentifierProvider
 import org.springframework.stereotype.Component
 
 @Component
-class UlidIdentifierProvider: IdentifierProvider {
+class UlidIdentifierProvider : IdentifierProvider {
     override fun generate(): String {
         return UlidCreator.getMonotonicUlid().toString()
     }

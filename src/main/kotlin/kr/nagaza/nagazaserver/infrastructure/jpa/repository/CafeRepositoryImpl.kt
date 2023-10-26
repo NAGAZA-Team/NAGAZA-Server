@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class CafeRepositoryImpl(
     private val jpaCafeRepository: JpaCafeRepository,
-): CafeRepository {
+) : CafeRepository {
     override fun findById(id: String): Cafe? {
         return jpaCafeRepository.findByIdOrNull(id)?.toModel()
     }

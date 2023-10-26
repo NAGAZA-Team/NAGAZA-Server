@@ -3,7 +3,6 @@ package kr.nagaza.nagazaserver.infrastructure.restapi
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.nimbusds.jose.jwk.JWK
 import io.jsonwebtoken.Jwts
-import kr.nagaza.nagazaserver.domain.exception.DomainException
 import kr.nagaza.nagazaserver.domain.exception.OAuthLoginFailedException
 import kr.nagaza.nagazaserver.domain.model.SocialProvider
 import kr.nagaza.nagazaserver.domain.model.SocialUser

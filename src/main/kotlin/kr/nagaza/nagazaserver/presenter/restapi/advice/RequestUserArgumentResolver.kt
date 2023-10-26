@@ -21,7 +21,7 @@ class RequestUserArgumentResolver : HandlerMethodArgumentResolver {
         binderFactory: WebDataBinderFactory?,
     ): Any {
         val authorization = SecurityContextHolder.getContext().authentication
-       // if (authorization !is APIKeyAuthentication) throw UnAuthenticatedException()
+        // if (authorization !is APIKeyAuthentication) throw UnAuthenticatedException()
         return authorization.name
     }
 }

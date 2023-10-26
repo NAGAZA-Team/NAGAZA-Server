@@ -38,4 +38,4 @@ class SocialUserEntity(
 class SocialUserEntityKey(
     val socialProvider: SocialProvider = SocialProvider.APPLE,
     val socialIdentifier: String = "",
-): Serializable
+) : Serializable
