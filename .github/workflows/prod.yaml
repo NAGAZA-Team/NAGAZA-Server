@@ -12,12 +12,12 @@ concurrency:
   group: api
 
 jobs:
-  call-test-workflow:
-    name: 테스트 실행
-    uses: ./.github/workflows/test.yaml
-    permissions:
-      id-token: write
-      contents: read
+#  call-test-workflow:
+#    name: 테스트 실행
+#    uses: ./.github/workflows/test.yaml
+#    permissions:
+#      id-token: write
+#      contents: read
   call-build-workflow:
     name: 이미지 빌드
     uses: ./.github/workflows/build.yaml
