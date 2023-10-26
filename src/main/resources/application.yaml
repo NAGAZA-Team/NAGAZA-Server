@@ -21,7 +21,7 @@ spring:
     hibernate:
       ddl-auto: none
   flyway:
-    enabled: false
+    enabled: true
     baseline-on-migrate: true
 logging:
   pattern:

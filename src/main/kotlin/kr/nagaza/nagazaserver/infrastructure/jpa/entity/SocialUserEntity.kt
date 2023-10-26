@@ -33,9 +33,27 @@ class SocialUserEntity(
             userId = socialUser.userId,
         )
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is SocialUserEntity) return false
+
+        if (socialProvider != other.socialProvider) return false
+        if (socialIdentifier != other.socialIdentifier) return false
+        if (userId != other.userId) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = socialProvider.hashCode()
+        result = 31 * result + socialIdentifier.hashCode()
+        result = 31 * result + userId.hashCode()
+        return result
+    }
 }
 
-class SocialUserEntityKey(
+data class SocialUserEntityKey(
     val socialProvider: SocialProvider = SocialProvider.APPLE,
     val socialIdentifier: String = "",
 ) : Serializable
