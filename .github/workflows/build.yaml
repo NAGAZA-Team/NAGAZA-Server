@@ -1,6 +1,23 @@
 name: 이미지 빌드 & 푸쉬
 on:
   workflow_call:
+    inputs:
+      ecr-repository-name:
+        required: true
+        type: string
+      image-tag:
+        required: true
+        type: string
+      spring-profile:
+        required: true
+        type: string
+    secrets:
+      AWS_ASSUME_ROLE_ARN:
+        required: true
+      AWS_ECR_REGISTRY_URL:
+        required: true
+      AWS_REGION:
+        required: true
 
 jobs:
   build:
@@ -24,9 +41,17 @@ jobs:
       - name: Gradle 준비하기
         uses: gradle/gradle-build-action@v2
 
-      - name: 이미지 빌드하기
+      - name: AWS ECR 로그인하기
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: 이미지 빌드하고 푸쉬하기
         id: build-image
-        run: | 
-          chmod +x scripts/build.sh &&
-          chmod +x ./gradlew &&
-          /bin/bash scripts/build.sh
+        env:
+          IMAGE_TAG: ${{ needs.prepare.outputs.imageTag }}
+          ECR_REGISTRY_PREFIX: '${{ secrets.AWS_ECR_REGISTRY_URL }}/'
+        run: |
+          /bin/bash dockerBuild.sh \
+            ${{ env.ECR_REGISTRY_PREFIX }}${{ inputs.ecr-repository-name }} \
+            ${{ inputs.image-tag }} \
+            ${{ inputs.spring-profile }}

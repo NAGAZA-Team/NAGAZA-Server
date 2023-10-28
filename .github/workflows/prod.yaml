@@ -8,19 +8,45 @@ on:
       - 'build.gradle.kts' # Parent Gradle 모듈 설정이 변경된 경우
       - 'settings.gradle' # Parent Gradle 설정이 변경된 경우
 
+env:
+  ECR_REPOSITORY_NAME: nagaza-backend-prod
+  SPRING_PROFILE: prod
+
 concurrency:
   group: api
 
 jobs:
-#  call-test-workflow:
-#    name: 테스트 실행
-#    uses: ./.github/workflows/test.yaml
-#    permissions:
-#      id-token: write
-#      contents: read
+  prepare-variables:
+    name: 환경변수 준비하기
+    runs-on: ubuntu-latest
+    outputs:
+      ecr-repository-name: ${{ steps.setup-env.outputs.ecr-repository-name }}
+      image-tag: ${{ steps.setup-env.outputs.image-tag }}
+      spring-profile: ${{ steps.setup-env.outputs.spring-profile }}
+    steps:
+      - name: GitHub 에서 레포 받아오기
+        uses: actions/checkout@v3
+
+      - name: 환경변수 출력하기
+        id: setup-env
+        run: |
+          echo "ecr-repository-name=$ECR_REPOSITORY_NAME" >> $GITHUB_OUTPUT
+          echo "image-tag=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "spring-profile=$SPRING_PROFILE" >> $GITHUB_OUTPUT
   call-build-workflow:
+    if: github.event_name == 'push'
+    needs: [ prepare-variables ]
     name: 이미지 빌드
     uses: ./.github/workflows/build.yaml
     permissions:
       id-token: write
       contents: read
+    with:
+      environment: ${{ needs.prepare-variables.outputs.github-environment-name }}
+      ecr-repository-name: ${{ needs.prepare-variables.outputs.ecr-repository-name }}
+      image-tag: ${{ needs.prepare-variables.outputs.image-tag }}
+      spring-profile: ${{ needs.prepare-variables.outputs.spring-profile }}
+    secrets:
+      AWS_ASSUME_ROLE_ARN: ${{ secrets.AWS_ASSUME_ROLE_ARN }}
+      AWS_ECR_REGISTRY_URL: ${{ secrets.AWS_ECR_REGISTRY_URL }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
