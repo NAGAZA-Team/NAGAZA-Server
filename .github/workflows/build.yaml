@@ -54,6 +54,7 @@ jobs:
           ECR_REGISTRY_PREFIX: '${{ secrets.AWS_ECR_REGISTRY_URL }}/'
         run: |
           chmod +x scripts/dockerBuild.sh &&
+          chmod +x ./gradlew &&
           /bin/bash scripts/dockerBuild.sh \
             ${{ env.ECR_REGISTRY_PREFIX }}${{ inputs.ecr-repository-name }} \
             ${{ inputs.image-tag }} \
