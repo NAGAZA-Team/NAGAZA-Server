@@ -24,7 +24,7 @@ interface MeApi {
     @Operation(summary = "내가 작성한 리뷰 목록 조회", description = "내가 작성한 리뷰 목록을 조회합니다.")
     @GetMapping("/reviews")
     fun getMyReviews(
-        @RequestUser userId: String
+        @RequestUser userId: String,
     ): List<CafeRoomReviewResponse>
 
     @Operation(summary = "닉네임 변경", description = "내 닉네임을 변경합니다.")
