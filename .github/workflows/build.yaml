@@ -53,7 +53,8 @@ jobs:
           IMAGE_TAG: ${{ needs.prepare.outputs.imageTag }}
           ECR_REGISTRY_PREFIX: '${{ secrets.AWS_ECR_REGISTRY_URL }}/'
         run: |
-          /bin/bash dockerBuild.sh \
+          chmod +x scripts/dockerBuild.sh &&
+          /bin/bash scripts/dockerBuild.sh \
             ${{ env.ECR_REGISTRY_PREFIX }}${{ inputs.ecr-repository-name }} \
             ${{ inputs.image-tag }} \
             ${{ inputs.spring-profile }}
