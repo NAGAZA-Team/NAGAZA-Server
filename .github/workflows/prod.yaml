@@ -33,6 +33,7 @@ jobs:
           echo "ecr-repository-name=$ECR_REPOSITORY_NAME" >> $GITHUB_OUTPUT
           echo "image-tag=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           echo "spring-profile=$SPRING_PROFILE" >> $GITHUB_OUTPUT
+
   call-build-workflow:
     if: github.event_name == 'push'
     needs: [ prepare-variables ]
