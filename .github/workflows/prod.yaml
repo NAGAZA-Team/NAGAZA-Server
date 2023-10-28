@@ -62,7 +62,7 @@ jobs:
 
   call-deploy-workflow:
     if: github.event_name == 'push'
-    needs: [ call-build-workflow ]
+    needs: [ prepare-variables, call-build-workflow ]
     name: AWS ECS 배포
     uses: ./.github/workflows/deploy.yaml
     permissions:

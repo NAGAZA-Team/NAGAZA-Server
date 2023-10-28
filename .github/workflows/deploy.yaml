@@ -31,9 +31,11 @@ jobs:
       contents: read
 
     steps:
-      - name: AWS ECR 로그인하기
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+      - name: AWS 인증정보 준비하기
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_ASSUME_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: AWS 태스크 정의 파일 내려받기
         run: |
