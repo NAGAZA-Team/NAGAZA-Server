@@ -42,7 +42,6 @@ jobs:
       id-token: write
       contents: read
     with:
-      environment: ${{ needs.prepare-variables.outputs.github-environment-name }}
       ecr-repository-name: ${{ needs.prepare-variables.outputs.ecr-repository-name }}
       image-tag: ${{ needs.prepare-variables.outputs.image-tag }}
       spring-profile: ${{ needs.prepare-variables.outputs.spring-profile }}
