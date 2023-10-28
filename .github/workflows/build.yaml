@@ -2,7 +2,7 @@ name: 이미지 빌드 & 푸쉬
 on:
   workflow_call:
     outputs:
-      firstword:
+      image-url:
         value: ${{ jobs.build.outputs.image-url }}
     inputs:
       ecr-repository-name:
