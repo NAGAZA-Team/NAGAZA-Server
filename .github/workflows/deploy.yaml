@@ -14,6 +14,13 @@ on:
       image-url:
         required: true
         type: string
+    secrets:
+      AWS_ASSUME_ROLE_ARN:
+        required: true
+      AWS_ECR_REGISTRY_URL:
+        required: true
+      AWS_REGION:
+        required: true
 jobs:
   deploy:
     runs-on: [ ubuntu-latest ]

@@ -73,3 +73,7 @@ jobs:
       ecs-cluster: ${{ needs.prepare-variables.outputs.ecs-cluster }}
       ecr-task-definition: ${{ needs.prepare-variables.outputs.ecr-task-definition }}
       image-url: ${{ needs.call-build-workflow.outputs.image-url }}
+    secrets:
+      AWS_ASSUME_ROLE_ARN: ${{ secrets.AWS_ASSUME_ROLE_ARN }}
+      AWS_ECR_REGISTRY_URL: ${{ secrets.AWS_ECR_REGISTRY_URL }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
