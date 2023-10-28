@@ -1,7 +1,19 @@
 name: AWS ECS 배포
 on:
   workflow_call:
-
+    inputs:
+      ecs-service:
+        required: true
+        type: string
+      ecs-cluster:
+        required: true
+        type: string
+      ecr-task-definition:
+        required: true
+        type: string
+      image-url:
+        required: true
+        type: string
 jobs:
   deploy:
     runs-on: [ ubuntu-latest ]
@@ -15,3 +27,26 @@ jobs:
       - name: AWS ECR 로그인하기
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+
+      - name: AWS 태스크 정의 파일 내려받기
+        run: |
+          aws ecs describe-task-definition \
+          --task-definition ${{ inputs.ecr-task-definition }} \
+          --query taskDefinition \
+          > task-definition.json
+
+      - name: AWS 태스크 정의 파일에 이미지 버전 업데이트하기
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: api
+          image: "${{ inputs.image-url }}"
+
+      - name: AWS 태스크 정의 배포하고 서비스 업데이트하기
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ inputs.ecs-service }}
+          cluster: ${{ inputs.ecs-cluster }}
+          wait-for-service-stability: true # ECS 배포후 롤링업데이트까지 성공해야 태스크가 완료됩니다.

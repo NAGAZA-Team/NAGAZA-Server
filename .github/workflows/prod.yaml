@@ -11,6 +11,9 @@ on:
 env:
   ECR_REPOSITORY_NAME: nagaza-backend-prod
   SPRING_PROFILE: prod
+  ECS_SERVICE: nagaza-backend
+  ECS_CLUSTER: nagaza-cluster-prod
+  ECR_TASK_DEFINITION: nagaza-backend-prod
 
 concurrency:
   group: api
@@ -23,6 +26,9 @@ jobs:
       ecr-repository-name: ${{ steps.setup-env.outputs.ecr-repository-name }}
       image-tag: ${{ steps.setup-env.outputs.image-tag }}
       spring-profile: ${{ steps.setup-env.outputs.spring-profile }}
+      ecs-service: ${{ env.ECS_SERVICE }}
+      ecs-cluster: ${{ env.ECS_CLUSTER }}
+      ecr-task-definition: ${{ env.ECR_TASK_DEFINITION }}
     steps:
       - name: GitHub 에서 레포 받아오기
         uses: actions/checkout@v3
@@ -33,6 +39,9 @@ jobs:
           echo "ecr-repository-name=$ECR_REPOSITORY_NAME" >> $GITHUB_OUTPUT
           echo "image-tag=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
           echo "spring-profile=$SPRING_PROFILE" >> $GITHUB_OUTPUT
+          echo "ecs-service=$ECS_SERVICE" >> $GITHUB_OUTPUT
+          echo "ecs-cluster=$ECS_CLUSTER" >> $GITHUB_OUTPUT
+          echo "ecr-task-definition=$ECR_TASK_DEFINITION" >> $GITHUB_OUTPUT
 
   call-build-workflow:
     if: github.event_name == 'push'
@@ -50,3 +59,14 @@ jobs:
       AWS_ASSUME_ROLE_ARN: ${{ secrets.AWS_ASSUME_ROLE_ARN }}
       AWS_ECR_REGISTRY_URL: ${{ secrets.AWS_ECR_REGISTRY_URL }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
+
+  call-deploy-workflow:
+    if: github.event_name == 'push'
+    needs: [ call-build-workflow ]
+    name: AWS ECS 배포
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      ecs-service: ${{ needs.prepare-variables.outputs.ecs-service }}
+      ecs-cluster: ${{ needs.prepare-variables.outputs.ecs-cluster }}
+      ecr-task-definition: ${{ needs.prepare-variables.outputs.ecr-task-definition }}
+      image-url: ${{ secrets.AWS_ECR_REGISTRY_URL }}/${{ needs.prepare-variables.outputs.ecr-repository-name }}:${{ needs.prepare-variables.outputs.image-tag }}
