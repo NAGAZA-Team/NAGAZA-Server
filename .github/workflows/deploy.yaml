@@ -14,6 +14,9 @@ on:
       image-url:
         required: true
         type: string
+      environment:
+        required: true
+        type: string
     secrets:
       AWS_ASSUME_ROLE_ARN:
         required: true
@@ -23,6 +26,7 @@ on:
         required: true
 jobs:
   deploy:
+    environment: ${{ inputs.environment }}
     runs-on: [ ubuntu-latest ]
     name: ECS 배포하기
 

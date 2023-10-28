@@ -69,6 +69,7 @@ jobs:
       id-token: write
       contents: read
     with:
+      environment: production
       ecs-service: ${{ needs.prepare-variables.outputs.ecs-service }}
       ecs-cluster: ${{ needs.prepare-variables.outputs.ecs-cluster }}
       ecr-task-definition: ${{ needs.prepare-variables.outputs.ecr-task-definition }}
