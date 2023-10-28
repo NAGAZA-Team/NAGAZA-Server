@@ -65,4 +65,4 @@ jobs:
             ${{ env.ECR_REGISTRY_PREFIX }}${{ inputs.ecr-repository-name }} \
             ${{ inputs.image-tag }} \
             ${{ inputs.spring-profile }} &&
-          echo "image-url=${{ env.ECR_REGISTRY_PREFIX }}${{ inputs.ecr-repository-name }}" >> $GITHUB_OUTPUT
+          echo "image-url=${{ inputs.ecr-repository-name }}:${{ inputs.image-tag }}" >> $GITHUB_OUTPUT

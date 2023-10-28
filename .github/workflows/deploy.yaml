@@ -50,7 +50,7 @@ jobs:
         with:
           task-definition: task-definition.json
           container-name: api
-          image: "${{ inputs.image-url }}"
+          image: "${{ secrets.AWS_ECR_REGISTRY_URL }}/${{ inputs.image-url }}"
 
       - name: AWS 태스크 정의 배포하고 서비스 업데이트하기
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
