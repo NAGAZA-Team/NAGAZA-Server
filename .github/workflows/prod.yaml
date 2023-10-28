@@ -69,4 +69,4 @@ jobs:
       ecs-service: ${{ needs.prepare-variables.outputs.ecs-service }}
       ecs-cluster: ${{ needs.prepare-variables.outputs.ecs-cluster }}
       ecr-task-definition: ${{ needs.prepare-variables.outputs.ecr-task-definition }}
-      image-url: ${{ secrets.AWS_ECR_REGISTRY_URL }}/${{ needs.prepare-variables.outputs.ecr-repository-name }}:${{ needs.prepare-variables.outputs.image-tag }}
+      image-url: ${{ needs.call-build-workflow.outputs.image-url }}
