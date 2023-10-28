@@ -65,6 +65,9 @@ jobs:
     needs: [ call-build-workflow ]
     name: AWS ECS 배포
     uses: ./.github/workflows/deploy.yaml
+    permissions:
+      id-token: write
+      contents: read
     with:
       ecs-service: ${{ needs.prepare-variables.outputs.ecs-service }}
       ecs-cluster: ${{ needs.prepare-variables.outputs.ecs-cluster }}
