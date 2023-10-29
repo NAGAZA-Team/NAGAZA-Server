@@ -43,7 +43,7 @@ CREATE TABLE cafe
     cafe_id      CHAR(26)     NOT NULL,
     franchise_id CHAR(26)              DEFAULT NULL,
     cafe_name    VARCHAR(128) NOT NULL,
-    description  TEXT         NOT NULL DEFAULT '',
+    description  TEXT         NOT NULL,
     address      VARCHAR(255),
     web_url      VARCHAR(255),
     phone_number VARCHAR(36),
@@ -64,7 +64,7 @@ CREATE TABLE cafe_room
     timeout        INT         NOT NULL,
     recommend_user INT         NOT NULL,
     room_img_url   VARCHAR(128),
-    description    TEXT        NOT NULL DEFAULT '',
+    description    TEXT        NOT NULL,
     PRIMARY KEY (room_id),
     FOREIGN KEY cafe_room_fk1 (cafe_id) REFERENCES cafe (cafe_id) ON DELETE CASCADE
 ) DEFAULT CHARSET = utf8mb4
