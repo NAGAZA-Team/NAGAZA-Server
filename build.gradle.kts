@@ -41,7 +41,7 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 	implementation("com.github.f4b6a3:ulid-creator:5.2.0")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
-	runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.7.0")
+	//runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.7.0")
 
 	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
 	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")

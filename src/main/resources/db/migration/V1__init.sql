@@ -4,9 +4,9 @@ CREATE TABLE app_info
     in_service  BOOLEAN     NOT NULL COMMENT '서비스 여부',
     created_at  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_At  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY app_info_pk(app_version)
-) DEFAULT CHARSET=utf8mb4
-  COLLATE=utf8mb4_unicode_ci COMMENT='앱정보';
+    PRIMARY KEY app_info_pk (app_version)
+) DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci COMMENT ='앱정보';
 
 CREATE TABLE user
 (
@@ -43,7 +43,7 @@ CREATE TABLE cafe
     cafe_id      CHAR(26)     NOT NULL,
     franchise_id CHAR(26)              DEFAULT NULL,
     cafe_name    VARCHAR(128) NOT NULL,
-    description  TEXT         NOT NULL DEFAULT '',
+    description  TEXT         NOT NULL,
     address      VARCHAR(255),
     web_url      VARCHAR(255),
     phone_number VARCHAR(36),
@@ -64,7 +64,7 @@ CREATE TABLE cafe_room
     timeout        INT         NOT NULL,
     recommend_user INT         NOT NULL,
     room_img_url   VARCHAR(128),
-    description    TEXT        NOT NULL DEFAULT '',
+    description    TEXT        NOT NULL,
     PRIMARY KEY (room_id),
     FOREIGN KEY cafe_room_fk1 (cafe_id) REFERENCES cafe (cafe_id) ON DELETE CASCADE
 ) DEFAULT CHARSET = utf8mb4
@@ -121,6 +121,7 @@ CREATE TABLE cafe_room_review_det_opt
 ) DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci comment '방탈출카페방리뷰디테일선택';
 
-#
-MOCK DML
-INSERT INTO user (user_id, nickname, profile_img_url) VALUES ('01HDNFJHCNS5E2W35YTB030TJ8', '테스트용사용자', 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png');
+#MOCK DML
+INSERT INTO user (user_id, nickname, profile_img_url)
+VALUES ('01HDNFJHCNS5E2W35YTB030TJ8', '테스트용사용자',
+        'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png');

@@ -1,6 +1,9 @@
 name: 이미지 빌드 & 푸쉬
 on:
   workflow_call:
+    outputs:
+      image-url:
+        value: ${{ jobs.build.outputs.image-url }}
     inputs:
       ecr-repository-name:
         required: true
@@ -23,6 +26,9 @@ jobs:
   build:
     runs-on: [ ubuntu-latest ]
     name: 이미지 빌드하기
+
+    outputs:
+      image-url: ${{ steps.build-image.outputs.image-url }}
 
     permissions:
       id-token: write
@@ -54,7 +60,9 @@ jobs:
           ECR_REGISTRY_PREFIX: '${{ secrets.AWS_ECR_REGISTRY_URL }}/'
         run: |
           chmod +x scripts/dockerBuild.sh &&
+          chmod +x ./gradlew &&
           /bin/bash scripts/dockerBuild.sh \
             ${{ env.ECR_REGISTRY_PREFIX }}${{ inputs.ecr-repository-name }} \
             ${{ inputs.image-tag }} \
-            ${{ inputs.spring-profile }}
+            ${{ inputs.spring-profile }} &&
+          echo "image-url=${{ inputs.ecr-repository-name }}:${{ inputs.image-tag }}" >> $GITHUB_OUTPUT

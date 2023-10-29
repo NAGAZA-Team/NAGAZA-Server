@@ -39,7 +39,7 @@ class CafeEntity(
     val addressOne: String?,
 
     @Column(name = "addr_2")
-    val addressTwo: String?
+    val addressTwo: String?,
 ) {
     fun toModel() = Cafe(
         id = cafeId,
