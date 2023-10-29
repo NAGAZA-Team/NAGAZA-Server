@@ -121,8 +121,7 @@ CREATE TABLE cafe_room_review_det_opt
 ) DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci comment '방탈출카페방리뷰디테일선택';
 
-#
-MOCK DML
+#MOCK DML
 INSERT INTO user (user_id, nickname, profile_img_url)
 VALUES ('01HDNFJHCNS5E2W35YTB030TJ8', '테스트용사용자',
         'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png');
