@@ -35,7 +35,7 @@ class RequestInterceptor(
         handler: Any,
         ex: Exception?,
     ) {
-        if (request.requestURI == "/api/health-check") return
+        if (!request.requestURI.startsWith("/v1")) return
         val startTime = request.getAttribute(START_TIME_ATTR_NAME) as Long
         val endTime = System.currentTimeMillis()
         val origin = request.getHeader("X-Forwarded-For") ?: request.remoteAddr

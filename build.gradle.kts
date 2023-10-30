@@ -22,35 +22,39 @@ repositories {
 }
 
 dependencies {
+
+	// Web Related Dependencies
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.flywaydb:flyway-core")
-	implementation("org.flywaydb:flyway-mysql")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	runtimeOnly("com.mysql:mysql-connector-j")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
 	implementation("com.nimbusds:nimbus-jose-jwt:9.37")
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
-	implementation("com.github.f4b6a3:ulid-creator:5.2.0")
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
-	//runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.7.0")
 
+	// Database Related Dependencies
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.flywaydb:flyway-core")
+	implementation("org.flywaydb:flyway-mysql")
+	runtimeOnly("com.mysql:mysql-connector-j")
 	implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
 	kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 	kapt("com.querydsl:querydsl-kotlin-codegen:5.0.0")
 
-	// https://mvnrepository.com/artifact/org.mockito/mockito-core
+	// Test Related Dependencies
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.mockito:mockito-core:5.6.0")
 	testImplementation("org.mockito:mockito-junit-jupiter:5.6.0")
 	testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+
+	// Extra Utility Dependencies
+	implementation("com.github.f4b6a3:ulid-creator:5.2.0")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 }
 
