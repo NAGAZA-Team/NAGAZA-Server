@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class CafeRepositoryImpl(
     private val jpaCafeRepository: JpaCafeRepository,
+    private val qCafeRepository: QCafeRepository,
 ) : CafeRepository {
     override fun findAll(): List<Cafe> {
         return jpaCafeRepository.findAll().map { it.toModel() }
@@ -27,6 +28,12 @@ class CafeRepositoryImpl(
             addressOne = addressOne,
             addressTwo = addressTwo,
         ).map { it.toModel() }
+    }
+
+    override fun searchByQuery(query: String): List<Cafe> {
+        return qCafeRepository
+            .searchCafeByQuery(query)
+            .map { it.toModel() }
     }
 
 }

@@ -11,7 +11,9 @@ class CafeSearchController(
     private val cafeService: CafeService,
 ) : CafeSearchApi {
     override fun searchCafe(query: String): List<CafeResponse> {
-        TODO("Not yet implemented")
+        return cafeService
+            .searchCafeByQuery(query)
+            .map { CafeResponse.fromModel(it) }
     }
 
     override fun searchCafeByAddress(addressOne: String, addressTwo: String): List<CafeResponse> {

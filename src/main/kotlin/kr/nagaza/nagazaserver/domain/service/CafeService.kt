@@ -16,4 +16,6 @@ class CafeService(
     fun getById(cafeId: String): Cafe {
         return cafeRepository.findById(cafeId) ?: throw CafeNotFoundException()
     }
+
+    fun searchCafeByQuery(query: String) = cafeRepository.searchByQuery(query)
 }
