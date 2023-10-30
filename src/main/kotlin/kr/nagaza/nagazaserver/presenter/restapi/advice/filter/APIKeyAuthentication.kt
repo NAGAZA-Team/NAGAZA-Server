@@ -3,7 +3,7 @@ package kr.nagaza.nagazaserver.presenter.restapi.advice.filter
 import org.springframework.security.core.Authentication
 
 class APIKeyAuthentication(
-    private val userId: String,
+    val userId: String,
     private val token: String,
 ) : Authentication {
     private var authenticated = true

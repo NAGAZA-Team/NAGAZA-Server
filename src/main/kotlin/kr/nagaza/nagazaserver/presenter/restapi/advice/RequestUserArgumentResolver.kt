@@ -1,5 +1,7 @@
 package kr.nagaza.nagazaserver.presenter.restapi.advice
 
+import kr.nagaza.nagazaserver.domain.exception.NotAuthenticatedException
+import kr.nagaza.nagazaserver.presenter.restapi.advice.filter.APIKeyAuthentication
 import org.springframework.core.MethodParameter
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
@@ -21,7 +23,7 @@ class RequestUserArgumentResolver : HandlerMethodArgumentResolver {
         binderFactory: WebDataBinderFactory?,
     ): Any {
         val authorization = SecurityContextHolder.getContext().authentication
-        // if (authorization !is APIKeyAuthentication) throw UnAuthenticatedException()
-        return authorization.name
+        if (authorization !is APIKeyAuthentication) throw NotAuthenticatedException()
+        return authorization.userId
     }
 }
