@@ -85,8 +85,9 @@ jib {
 			"-Dfile.encoding=UTF-8",
 			"-XX:+UnlockExperimentalVMOptions",
 			"-XX:+UseContainerSupport",
-			"-Xms2G", //min
-			"-Xmx2G", //max
+			"-XX:+UseG1GC",
+			"-XX:InitialHeapSize=2g",
+			"-XX:MaxHeapSize=2g",
 			"-XX:+DisableExplicitGC", //System.gc() 방어
 			"-server",
 		)
