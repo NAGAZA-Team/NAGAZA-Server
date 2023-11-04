@@ -13,14 +13,14 @@ class CafeSearchController(
     override fun searchCafe(query: String): List<CafeResponse> {
         return cafeService
             .searchCafeByQuery(query)
-            .map { CafeResponse.fromModel(it) }
+            .map(CafeResponse::fromModel)
     }
 
     override fun searchCafeByAddress(addressOne: String, addressTwo: String): List<CafeResponse> {
         return cafeService.getAllByAddresses(
             addressOne = addressOne,
             addressTwo = addressTwo,
-        ).map { CafeResponse.fromModel(it) }
+        ).map(CafeResponse::fromModel)
     }
 
     override fun getCafeAreaFilters(): List<CafeAreaFilterResponse> {

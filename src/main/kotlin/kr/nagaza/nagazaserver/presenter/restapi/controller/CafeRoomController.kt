@@ -11,7 +11,7 @@ class CafeRoomController(
 ) : CafeRoomApi {
     override fun getCafeRooms(cafeId: String): List<CafeRoomResponse> {
         return cafeRoomService.getRoomsByCafeId(cafeId)
-            .map { CafeRoomResponse.fromModel(it) }
+            .map(CafeRoomResponse::fromModel)
     }
 
     override fun getCafeRoom(cafeId: String, roomId: String): CafeRoomResponse {

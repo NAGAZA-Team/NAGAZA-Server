@@ -25,7 +25,7 @@ class MeController(
     override fun getMyReviews(userId: String): List<CafeRoomReviewResponse> {
         return cafeRoomReviewService
             .getAllByUserId(userId)
-            .map { CafeRoomReviewResponse.fromModel(it) }
+            .map(CafeRoomReviewResponse::fromModel)
     }
 
     override fun updateNickname(

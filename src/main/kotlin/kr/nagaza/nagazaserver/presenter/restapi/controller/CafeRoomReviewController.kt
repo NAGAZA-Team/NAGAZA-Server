@@ -12,8 +12,6 @@ class CafeRoomReviewController(
     override fun getReviews(cafeId: String, roomId: String): List<CafeRoomReviewResponse> {
         return cafeRoomReviewService.getAllByRoomId(
             roomId = roomId,
-        ).map {
-            CafeRoomReviewResponse.fromModel(it)
-        }
+        ).map(CafeRoomReviewResponse::fromModel)
     }
 }
