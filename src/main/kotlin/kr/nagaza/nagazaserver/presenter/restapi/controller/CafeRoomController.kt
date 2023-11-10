@@ -15,8 +15,7 @@ class CafeRoomController(
     }
 
     override fun getCafeRoom(cafeId: String, roomId: String): CafeRoomResponse {
-        return CafeRoomResponse.fromModel(
-            cafeRoomService.getRoomByRoomId(roomId)
-        )
+        return cafeRoomService.getRoomByRoomId(roomId)
+            .let(CafeRoomResponse::fromModel)
     }
 }

@@ -19,7 +19,7 @@ class MeController(
         userId: String,
     ): MeResponse {
         val me = userService.getUserInfo(userId)
-        return MeResponse.fromModel(me)
+        return me.let(MeResponse::fromModel)
     }
 
     override fun getMyReviews(userId: String): List<CafeRoomReviewResponse> {
@@ -36,7 +36,7 @@ class MeController(
             userId = userId,
             nickname = request.nickname,
         )
-        return MeResponse.fromModel(result)
+        return result.let(MeResponse::fromModel)
     }
 
     override fun updateProfileImage(
@@ -47,7 +47,7 @@ class MeController(
             userId = userId,
             profileImageUrl = request.profileImageUrl,
         )
-        return MeResponse.fromModel(result)
+        return result.let(MeResponse::fromModel)
     }
 
     override fun quitNagaza(userId: String) {
