@@ -19,7 +19,7 @@ class SwaggerConfig {
         .components(Components())
         .info(apiInfo())
         .servers(listOf(Server().apply {
-            url = "https://api.nagaza.kr/"
+            url = "https://api.nagaza.xyz/"
             description = "기본 나가자 API 서버"
         }))
 
