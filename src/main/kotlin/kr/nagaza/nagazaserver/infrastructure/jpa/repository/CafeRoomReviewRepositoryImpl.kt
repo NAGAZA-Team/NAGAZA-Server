@@ -20,9 +20,6 @@ class CafeRoomReviewRepositoryImpl(
             cafeRoomReviewRepository
                 .findAllByRoomId(roomId)
 
-        println(entity)
-        println(entity.size)
-
         return entity.map {
             val rating = Rating.builder()
             it.ratingFields.forEach { field ->
