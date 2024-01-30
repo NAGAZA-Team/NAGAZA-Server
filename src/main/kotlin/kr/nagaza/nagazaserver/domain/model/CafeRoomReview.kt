@@ -17,4 +17,5 @@ data class CafeRoomReviewDetail(
     val userCnt: Int,
     val isCleared: Boolean,
     val usedHintCnt: Int,
+    val content: String?,
 )

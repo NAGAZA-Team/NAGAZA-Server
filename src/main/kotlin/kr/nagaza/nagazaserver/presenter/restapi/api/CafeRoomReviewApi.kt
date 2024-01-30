@@ -2,7 +2,7 @@ package kr.nagaza.nagazaserver.presenter.restapi.api
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomReviewResponse
+import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomReviewListResponse
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,5 +17,5 @@ interface CafeRoomReviewApi {
     fun getReviews(
         @PathVariable cafeId: String,
         @PathVariable roomId: String,
-    ): List<CafeRoomReviewResponse>
+    ): CafeRoomReviewListResponse
 }

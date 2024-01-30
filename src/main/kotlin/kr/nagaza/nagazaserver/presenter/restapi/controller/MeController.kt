@@ -15,27 +15,24 @@ class MeController(
     private val userService: UserService,
     private val cafeRoomReviewService: CafeRoomReviewService,
 ) : MeApi {
-    override fun getMe(
-        userId: String,
-    ): MeResponse {
+    override fun getMe(userId: String): MeResponse {
         val me = userService.getUserInfo(userId)
         return me.let(MeResponse::fromModel)
     }
 
     override fun getMyReviews(userId: String): List<CafeRoomReviewResponse> {
-        return cafeRoomReviewService
-            .getAllByUserId(userId)
-            .map(CafeRoomReviewResponse::fromModel)
+        throw NotImplementedError()
     }
 
     override fun updateNickname(
         userId: String,
         request: UpdateNicknameRequest,
     ): MeResponse {
-        val result = userService.updateNickName(
-            userId = userId,
-            nickname = request.nickname,
-        )
+        val result =
+            userService.updateNickName(
+                userId = userId,
+                nickname = request.nickname,
+            )
         return result.let(MeResponse::fromModel)
     }
 
@@ -43,10 +40,11 @@ class MeController(
         userId: String,
         request: UpdateProfileImageUrlRequest,
     ): MeResponse {
-        val result = userService.updateProfileImageUrl(
-            userId = userId,
-            profileImageUrl = request.profileImageUrl,
-        )
+        val result =
+            userService.updateProfileImageUrl(
+                userId = userId,
+                profileImageUrl = request.profileImageUrl,
+            )
         return result.let(MeResponse::fromModel)
     }
 
