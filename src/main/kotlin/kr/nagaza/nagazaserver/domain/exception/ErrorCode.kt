@@ -18,4 +18,6 @@ enum class ErrorCode(
     CAFE_NOT_FOUND("CE0001", "카페를 찾을 수 없습니다."),
 
     CAFE_ROOM_NOT_FOUND("RE0001", "카페 방을 찾을 수 없습니다."),
+
+    INVALID_RATING_VALUE("RA0001", "평점 값이 올바르지 않습니다.")
 }
