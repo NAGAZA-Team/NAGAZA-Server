@@ -24,4 +24,8 @@ class CafeRoomService(
     fun getRoomByRoomId(roomId: String): CafeRoom {
         return cafeRoomRepository.findByRoomId(roomId) ?: throw CafeRoomNotFoundException()
     }
+
+    fun getAllGenres(): List<String> {
+        return cafeRoomRepository.getAllGenres()
+    }
 }
