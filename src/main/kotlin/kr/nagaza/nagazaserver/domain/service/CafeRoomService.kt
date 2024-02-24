@@ -6,6 +6,7 @@ import kr.nagaza.nagazaserver.domain.exception.CafeRoomNotFoundException
 import kr.nagaza.nagazaserver.domain.model.CafeRoom
 import kr.nagaza.nagazaserver.domain.repository.CafeRepository
 import kr.nagaza.nagazaserver.domain.repository.CafeRoomRepository
+import kr.nagaza.nagazaserver.presenter.restapi.dto.request.RoomSearchQuery
 import org.springframework.stereotype.Service
 
 @Service
@@ -25,7 +26,13 @@ class CafeRoomService(
         return cafeRoomRepository.findByRoomId(roomId) ?: throw CafeRoomNotFoundException()
     }
 
-    fun getAllGenres(): List<String> {
-        return cafeRoomRepository.getAllGenres()
+    fun search(cafeRoomSearchQuery: RoomSearchQuery): List<CafeRoom> {
+        return cafeRoomRepository.search(
+            queryString = cafeRoomSearchQuery.queryString,
+            genre = cafeRoomSearchQuery.genre,
+            address1 = cafeRoomSearchQuery.address1,
+            address2 = cafeRoomSearchQuery.address2,
+            cafeId = cafeRoomSearchQuery.cafeId,
+        )
     }
 }

@@ -9,10 +9,6 @@ import org.springframework.stereotype.Repository
 class CafeRoomRepositoryImpl(
     private val jpaCafeRoomRepository: JpaCafeRoomRepository,
 ) : CafeRoomRepository {
-    override fun getAllGenres(): List<String> {
-        return jpaCafeRoomRepository.findAllGenres()
-    }
-
     override fun getAllRoomByCafeId(cafeId: String): List<CafeRoom> {
         return jpaCafeRoomRepository.findAllByCafeId(cafeId)
             .map {
@@ -22,5 +18,23 @@ class CafeRoomRepositoryImpl(
 
     override fun findByRoomId(roomId: String): CafeRoom? {
         return jpaCafeRoomRepository.findByIdOrNull(roomId)?.toModel()
+    }
+
+    override fun search(
+        queryString: String?,
+        genre: String?,
+        address1: String?,
+        address2: String?,
+        cafeId: String?,
+    ): List<CafeRoom> {
+        return jpaCafeRoomRepository.search(
+            queryString = queryString,
+            genre = genre,
+            address1 = address1,
+            address2 = address2,
+            cafeId = cafeId,
+        ).map {
+            it.toModel()
+        }
     }
 }
