@@ -13,17 +13,19 @@ class GenreEntity(
     @Column(name = "name")
     val name: String,
 ) {
+    fun toModel(): Genre {
+        return Genre(
+            genreId = genreId,
+            name = name,
+        )
+    }
+
     companion object {
-        fun fromModel(genre: Genre) =
-            GenreEntity(
+        fun fromModel(genre: Genre): GenreEntity {
+            return GenreEntity(
                 genreId = genre.genreId,
                 name = genre.name,
             )
-
-        fun toModel(genreEntity: GenreEntity) =
-            Genre(
-                genreId = genreEntity.genreId,
-                name = genreEntity.name,
-            )
+        }
     }
 }

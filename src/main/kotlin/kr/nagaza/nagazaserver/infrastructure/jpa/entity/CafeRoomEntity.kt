@@ -48,7 +48,7 @@ class CafeRoomEntity(
         CafeRoom(
             roomId = roomId,
             cafeId = cafeId,
-            genre = genre.map { GenreEntity.toModel(it) }.toSet(),
+            genre = genre.map { it.toModel() }.toSet(),
             timeout = timeout,
             recommendedUserCnt = recommendUserCnt,
             roomImgUrl = roomImgUrl,
