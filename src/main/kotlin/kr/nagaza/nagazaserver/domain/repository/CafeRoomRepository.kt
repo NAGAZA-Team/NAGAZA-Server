@@ -7,5 +7,11 @@ interface CafeRoomRepository {
 
     fun findByRoomId(roomId: String): CafeRoom?
 
-    fun getAllGenres(): List<String>
+    fun search(
+        queryString: String?,
+        genre: String?,
+        address1: String?,
+        address2: String?,
+        cafeId: String?,
+    ): List<CafeRoom>
 }
