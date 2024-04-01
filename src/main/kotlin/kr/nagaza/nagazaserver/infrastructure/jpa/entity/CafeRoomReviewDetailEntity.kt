@@ -9,14 +9,14 @@ class CafeRoomReviewDetailEntity(
     @Id
     @Column(name = "review_id")
     val reviewId: String,
-    @Column(name = "user_cnt")
+    @Column(name = "user_cnt", nullable = false)
     val userCnt: Int,
-    @Column(name = "is_cleared")
+    @Column(name = "is_cleared", nullable = false)
     val isCleared: Boolean,
-    @Column(name = "is_life_theme")
+    @Column(name = "is_life_theme", nullable = false)
     val isLifeTheme: Boolean,
-    @Column(name = "used_hint_cnt")
+    @Column(name = "used_hint_cnt", nullable = false)
     val usedHintCnt: Int,
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     val content: String,
 )

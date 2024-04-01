@@ -10,64 +10,56 @@ class CafeEntity(
     @Id
     @Column(name = "cafe_id")
     val cafeId: String,
-
-    @Column(name = "franchise_id")
+    @Column(name = "franchise_id", nullable = false)
     val franchiseId: String,
-
-    @Column(name = "cafe_name")
+    @Column(name = "cafe_name", nullable = false)
     val cafeName: String,
-
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     val description: String,
-
     @Column(name = "address")
     val address: String?,
-
     @Column(name = "web_url")
     val webUrl: String?,
-
     @Column(name = "phone_number")
     val phoneNumber: String?,
-
     @Column(name = "location_lat")
     val locationLat: Double?,
-
     @Column(name = "location_lng")
     val locationLng: Double?,
-
     @Column(name = "addr_1")
     val addressOne: String?,
-
     @Column(name = "addr_2")
     val addressTwo: String?,
 ) {
-    fun toModel() = Cafe(
-        id = cafeId,
-        franchiseId = franchiseId,
-        name = cafeName,
-        description = description,
-        address = address,
-        webUrl = webUrl,
-        phoneNumber = phoneNumber,
-        locationLat = locationLat,
-        locationLng = locationLng,
-        addressOne = addressOne,
-        addressTwo = addressTwo,
-    )
+    fun toModel() =
+        Cafe(
+            id = cafeId,
+            franchiseId = franchiseId,
+            name = cafeName,
+            description = description,
+            address = address,
+            webUrl = webUrl,
+            phoneNumber = phoneNumber,
+            locationLat = locationLat,
+            locationLng = locationLng,
+            addressOne = addressOne,
+            addressTwo = addressTwo,
+        )
 
     companion object {
-        fun fromModel(cafe: Cafe) = CafeEntity(
-            cafeId = cafe.id,
-            franchiseId = cafe.franchiseId,
-            cafeName = cafe.name,
-            description = cafe.description,
-            address = cafe.address,
-            webUrl = cafe.webUrl,
-            phoneNumber = cafe.phoneNumber,
-            locationLat = cafe.locationLat,
-            locationLng = cafe.locationLng,
-            addressOne = cafe.addressOne,
-            addressTwo = cafe.addressTwo,
-        )
+        fun fromModel(cafe: Cafe) =
+            CafeEntity(
+                cafeId = cafe.id,
+                franchiseId = cafe.franchiseId,
+                cafeName = cafe.name,
+                description = cafe.description,
+                address = cafe.address,
+                webUrl = cafe.webUrl,
+                phoneNumber = cafe.phoneNumber,
+                locationLat = cafe.locationLat,
+                locationLng = cafe.locationLng,
+                addressOne = cafe.addressOne,
+                addressTwo = cafe.addressTwo,
+            )
     }
 }

@@ -10,24 +10,24 @@ class UserEntity(
     @Id
     @Column(name = "user_id")
     val userId: String,
-
-    @Column(name = "nickname")
+    @Column(name = "nickname", nullable = false)
     val nickname: String,
-
     @Column(name = "profile_img_url")
     val profileImageUrl: String?,
 ) {
-    fun toModel() = User(
-        userId = userId,
-        nickname = nickname,
-        profileImageUrl = profileImageUrl,
-    )
+    fun toModel() =
+        User(
+            userId = userId,
+            nickname = nickname,
+            profileImageUrl = profileImageUrl,
+        )
 
     companion object {
-        fun fromModel(model: User) = UserEntity(
-            userId = model.userId,
-            nickname = model.nickname,
-            profileImageUrl = model.profileImageUrl,
-        )
+        fun fromModel(model: User) =
+            UserEntity(
+                userId = model.userId,
+                nickname = model.nickname,
+                profileImageUrl = model.profileImageUrl,
+            )
     }
 }

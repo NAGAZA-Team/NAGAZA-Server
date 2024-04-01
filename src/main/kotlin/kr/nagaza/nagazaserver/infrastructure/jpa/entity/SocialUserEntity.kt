@@ -12,26 +12,26 @@ class SocialUserEntity(
     @Enumerated(EnumType.STRING)
     @Column(name = "social_provider")
     val socialProvider: SocialProvider,
-
     @Id
     @Column(name = "social_identifier")
     val socialIdentifier: String,
-
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     val userId: String,
 ) {
-    fun toModel() = SocialUser(
-        provider = socialProvider,
-        identifier = socialIdentifier,
-        userId = userId,
-    )
+    fun toModel() =
+        SocialUser(
+            provider = socialProvider,
+            identifier = socialIdentifier,
+            userId = userId,
+        )
 
     companion object {
-        fun fromModel(socialUser: SocialUser) = SocialUserEntity(
-            socialProvider = socialUser.provider,
-            socialIdentifier = socialUser.identifier,
-            userId = socialUser.userId,
-        )
+        fun fromModel(socialUser: SocialUser) =
+            SocialUserEntity(
+                socialProvider = socialUser.provider,
+                socialIdentifier = socialUser.identifier,
+                userId = socialUser.userId,
+            )
     }
 
     override fun equals(other: Any?): Boolean {

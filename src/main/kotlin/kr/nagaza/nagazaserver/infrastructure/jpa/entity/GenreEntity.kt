@@ -10,7 +10,7 @@ class GenreEntity(
     @Id
     @Column(name = "genre_id")
     val genreId: String,
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     val name: String,
 ) {
     fun toModel(): Genre {
