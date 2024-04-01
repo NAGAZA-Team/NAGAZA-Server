@@ -10,10 +10,10 @@ class CafeRoomReviewRatingFieldEntity(
     @Id
     @Column(name = "rating_field_id")
     val ratingFieldId: String,
-    @Column(name = "review_id")
+    @Column(name = "review_id", nullable = false)
     val reviewId: String,
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     val fieldType: RatingFieldType,
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     val value: Int,
 )

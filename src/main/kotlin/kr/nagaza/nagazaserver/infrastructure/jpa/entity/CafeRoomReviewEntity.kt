@@ -8,9 +8,9 @@ class CafeRoomReviewEntity(
     @Id
     @Column(name = "review_id")
     val reviewId: String,
-    @Column(name = "room_id")
+    @Column(name = "room_id", nullable = false)
     val roomId: String,
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     val userId: String,
     @OneToOne
     @PrimaryKeyJoinColumn
@@ -18,6 +18,6 @@ class CafeRoomReviewEntity(
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id")
     val ratingFields: List<CafeRoomReviewRatingFieldEntity> = listOf(),
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     val createdAt: Date,
 )

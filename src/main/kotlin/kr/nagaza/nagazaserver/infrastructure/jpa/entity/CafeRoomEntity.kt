@@ -10,11 +10,11 @@ class CafeRoomEntity(
     @Id
     @Column(name = "room_id")
     val roomId: String,
-    @Column(name = "cafe_id")
+    @Column(name = "cafe_id", nullable = false)
     val cafeId: String,
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     val title: String,
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     val description: String,
     @ManyToMany
     @JoinTable(
@@ -23,9 +23,9 @@ class CafeRoomEntity(
         inverseJoinColumns = [JoinColumn(name = "genre_id")],
     )
     val genre: MutableSet<GenreEntity> = mutableSetOf(),
-    @Column(name = "timeout")
+    @Column(name = "timeout", nullable = false)
     val timeout: Int,
-    @Column(name = "recommend_user")
+    @Column(name = "recommend_user", nullable = false)
     val recommendUserCnt: Int,
     @Column(name = "room_img_url")
     val roomImgUrl: String?,
