@@ -113,14 +113,14 @@ jib {
     }
 }
 
-flyway {
-    url = env.MYSQL_URL.value + "?permitMysqlScheme=true"
-    user = env.MYSQL_USERNAME.value
-    password = env.MYSQL_PASSWORD.value
+tasks.withType<FlywayMigrateTask> {
+    enabled = env.isPresent("MYSQL_URL")
+
+    dependsOn("classes")
+
+    url = env.fetchOrNull("MYSQL_URL")
+    user = env.fetchOrNull("MYSQL_USERNAME")
+    password = env.fetchOrNull("MYSQL_PASSWORD")
     locations = arrayOf("classpath:db/migration")
     driver = "com.mysql.cj.jdbc.Driver"
-}
-
-tasks.withType<FlywayMigrateTask> {
-    dependsOn("classes")
 }
