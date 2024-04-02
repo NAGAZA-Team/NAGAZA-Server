@@ -40,7 +40,7 @@ dependencies {
     // Database Related Dependencies
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-    compileOnly("org.flywaydb:flyway-mysql")
+    implementation("org.flywaydb:flyway-mysql")
     implementation("org.flywaydb:flyway-core")
     runtimeOnly("com.mysql:mysql-connector-j")
 
