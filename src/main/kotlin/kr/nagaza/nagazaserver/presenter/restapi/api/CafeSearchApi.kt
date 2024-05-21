@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @Tag(name = "카페 검색 API", description = "카페 검색 관련 API")
 @RestController
-@RequestMapping("/v1/cafes/search")
+@RequestMapping("/v1/cafes/rooms/search")
 interface CafeSearchApi {
     @Operation(summary = "카페 검색", description = "문자열로 카페를 검색합니다.")
     @GetMapping(params = ["q"])

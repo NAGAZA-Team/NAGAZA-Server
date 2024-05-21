@@ -4,6 +4,7 @@ import com.querydsl.jpa.impl.JPAQuery
 import jakarta.persistence.EntityManager
 import jakarta.persistence.PersistenceContext
 import kr.nagaza.nagazaserver.domain.model.CafeRoom
+import kr.nagaza.nagazaserver.domain.model.CafeRoomAddressMap
 import kr.nagaza.nagazaserver.domain.repository.CafeRoomRepository
 import kr.nagaza.nagazaserver.infrastructure.jpa.entity.QCafeEntity
 import kr.nagaza.nagazaserver.infrastructure.jpa.entity.QCafeRoomEntity
@@ -65,6 +66,34 @@ class CafeRoomRepositoryImpl(
 
         return query.fetch().map {
             it.toModel()
+        }
+    }
+
+    override fun getAll(): List<CafeRoom> {
+        return jpaCafeRoomRepository.findAll().map {
+            it.toModel()
+        }
+    }
+
+    override fun getRoomCountGroupByAddress(): List<CafeRoomAddressMap> {
+        val cafeRoomEntity = QCafeRoomEntity.cafeRoomEntity
+        val cafeEntity = QCafeEntity.cafeEntity
+        val result =
+            JPAQuery<CafeRoom>(entityManager)
+                .select(cafeEntity.addressOne, cafeEntity.addressTwo, cafeRoomEntity.count())
+                .from(cafeRoomEntity)
+                .join(cafeEntity).on(cafeRoomEntity.cafeId.eq(cafeEntity.cafeId))
+                .groupBy(cafeEntity.addressOne, cafeEntity.addressTwo)
+                .fetch()
+
+        return result.filter {
+            it.get(cafeEntity.addressOne) != null && it.get(cafeEntity.addressTwo) != null
+        }.map {
+            CafeRoomAddressMap(
+                address1 = it.get(cafeEntity.addressOne)!!,
+                address2 = it.get(cafeEntity.addressTwo)!!,
+                count = it.get(cafeRoomEntity.count())?.toInt() ?: 0,
+            )
         }
     }
 }

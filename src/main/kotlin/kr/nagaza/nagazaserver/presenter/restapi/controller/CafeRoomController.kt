@@ -3,6 +3,7 @@ package kr.nagaza.nagazaserver.presenter.restapi.controller
 import kr.nagaza.nagazaserver.domain.service.CafeRoomService
 import kr.nagaza.nagazaserver.presenter.restapi.api.CafeRoomApi
 import kr.nagaza.nagazaserver.presenter.restapi.dto.request.RoomSearchQuery
+import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomAreaFilterItem
 import kr.nagaza.nagazaserver.presenter.restapi.dto.response.CafeRoomResponse
 import org.springframework.stereotype.Controller
 
@@ -13,6 +14,10 @@ class CafeRoomController(
     override fun getCafeRoom(roomId: String): CafeRoomResponse {
         return cafeRoomService.getRoomByRoomId(roomId)
             .let(CafeRoomResponse::fromModel)
+    }
+
+    override fun getCafeRoomAreaFilters(): CafeRoomAreaFilterItem {
+        return this.cafeRoomService.getRoomAreaFilters()
     }
 
     override fun searchRooms(
