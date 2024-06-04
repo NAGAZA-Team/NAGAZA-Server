@@ -9,7 +9,7 @@ import kr.nagaza.nagazaserver.domain.model.Genre
 class GenreEntity(
     @Id
     @Column(name = "genre_id")
-    val genreId: String,
+    val genreId: Int,
     @Column(name = "name", nullable = false)
     val name: String,
 ) {

@@ -10,7 +10,7 @@ interface CafeRoomRepository {
 
     fun search(
         queryString: String?,
-        genre: String?,
+        genre: Int?,
         address1: String?,
         address2: String?,
         cafeId: String?,

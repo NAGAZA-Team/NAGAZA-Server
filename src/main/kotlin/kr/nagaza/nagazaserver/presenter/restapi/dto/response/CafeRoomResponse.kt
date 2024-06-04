@@ -14,7 +14,7 @@ data class CafeRoomResponse(
     @Schema(description = "설명", example = "형주의 방탈출 설명")
     val description: String,
     @Schema(description = "장르 (장르 Id)", example = "['1', '2']")
-    val genre: Set<String>,
+    val genre: Set<Int>,
     @Schema(description = "추천인원", example = "4")
     val recommendedUser: Int,
     @Schema(description = "방 이미지", example = "https://nagaza.kr/room/01HDNFJHCNS5E2W35YTB030TJ8.jpg")

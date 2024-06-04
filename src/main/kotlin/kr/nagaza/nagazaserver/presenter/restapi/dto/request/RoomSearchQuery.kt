@@ -4,6 +4,6 @@ class RoomSearchQuery(
     val queryString: String?,
     val address1: String?,
     val address2: String?,
-    val genre: String?,
+    val genre: Int?,
     val cafeId: String?,
 )

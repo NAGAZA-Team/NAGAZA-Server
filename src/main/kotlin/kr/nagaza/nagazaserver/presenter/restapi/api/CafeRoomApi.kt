@@ -18,7 +18,7 @@ interface CafeRoomApi {
     @GetMapping("/search")
     fun searchRooms(
         @Param("queryString") queryString: String?,
-        @Param("genre") genre: String?,
+        @Param("genre") genre: Int?,
         @Param("address1") address1: String?,
         @Param("address2") address2: String?,
         @Param("cafeId") cafeId: String?,

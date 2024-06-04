@@ -1,6 +1,6 @@
 package kr.nagaza.nagazaserver.domain.model
 
 data class Genre(
-    val genreId: String,
+    val genreId: Int,
     val name: String,
 )

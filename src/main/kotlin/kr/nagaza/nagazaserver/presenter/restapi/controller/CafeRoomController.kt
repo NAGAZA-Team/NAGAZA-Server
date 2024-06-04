@@ -22,7 +22,7 @@ class CafeRoomController(
 
     override fun searchRooms(
         queryString: String?,
-        genre: String?,
+        genre: Int?,
         address1: String?,
         address2: String?,
         cafeId: String?,
